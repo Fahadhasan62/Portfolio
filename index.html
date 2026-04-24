@@ -122,74 +122,122 @@
      ======================== */
   #hero {
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
     padding-top: 5rem;
     position: relative;
     overflow: hidden;
-  }
-  .hero-left {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 6rem 3rem 5rem 4rem;
-    position: relative;
-    z-index: 2;
   }
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-img-wrap {
-    position: absolute;
-    inset: 0;
+  .hero-image-band {
+    width: 100%;
     display: flex;
-    align-items: stretch;
+    justify-content: center;
+    align-items: flex-end;
+    padding-top: 3rem;
+    position: relative;
+    flex: 0 0 auto;
   }
-  .hero-img-wrap img {
+  .hero-img-frame {
+    position: relative;
+    width: 260px;
+    height: 310px;
+    flex-shrink: 0;
+  }
+  .hero-img-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: grayscale(15%) contrast(1.05);
+    filter: grayscale(12%) contrast(1.06);
+    display: block;
   }
-  .hero-img-overlay {
+  .hero-img-frame::before {
+    content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to right,
-      var(--bg) 0%,
-      rgba(10,10,10,0.12) 30%,
-      rgba(10,10,10,0) 100%
-    );
+    inset: -1px;
+    border: 1px solid var(--border2);
+    pointer-events: none;
+    z-index: 2;
   }
-  .hero-img-overlay-bottom {
+  .hero-img-shadow {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(to top, var(--bg), transparent);
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3rem;
+    background: radial-gradient(ellipse, rgba(200,184,154,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Flanking text beside image */
+  .hero-image-band-inner {
+    display: flex;
+    align-items: flex-end;
+    gap: 4rem;
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 4rem;
+  }
+  .hero-side-left {
+    flex: 1;
+    padding-bottom: 1.5rem;
+    text-align: right;
+  }
+  .hero-side-right {
+    flex: 1;
+    padding-bottom: 1.5rem;
+  }
+  .hero-side-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.5rem;
+  }
+  .hero-side-text {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.65;
+    max-width: 22ch;
+    margin-left: auto;
+  }
+  .hero-side-text-right {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.65;
+    max-width: 22ch;
   }
 
+  /* Bottom content block */
+  .hero-bottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3.5rem 4rem 5rem;
+    position: relative;
+  }
   .hero-eyebrow {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
   }
   .hero-eyebrow-line {
-    width: 2.5rem;
+    width: 2rem;
     height: 1px;
     background: var(--accent2);
   }
   .hero-name {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 5vw, 5.5rem);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
+    font-size: clamp(3.2rem, 6vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
   }
   .hero-name em {
     font-style: italic;
@@ -197,12 +245,12 @@
   }
   .hero-headline {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    font-size: clamp(0.9rem, 1.1vw, 1.0rem);
     font-weight: 400;
     color: var(--text2);
-    max-width: 36ch;
-    margin-bottom: 3rem;
-    line-height: 1.7;
+    max-width: 52ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
   }
   .hero-headline strong {
     color: var(--text);
@@ -212,9 +260,12 @@
     padding: 1.5rem 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     display: flex;
-    gap: 3rem;
+    gap: 4rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 560px;
   }
   .hero-stat-num {
     font-family: 'DM Serif Display', serif;
@@ -223,7 +274,7 @@
     line-height: 1;
   }
   .hero-stat-label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--text3);
     letter-spacing: 0.05em;
     margin-top: 0.3rem;
@@ -234,6 +285,7 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    justify-content: center;
   }
   .btn-primary {
     display: inline-flex;
@@ -272,20 +324,16 @@
   }
   .btn-ghost:hover::after { transform: translateX(4px); }
 
-  /* Vertical text on hero right */
-  .hero-vert-text {
+  /* decorative corner label */
+  .hero-corner-label {
     position: absolute;
-    top: 50%;
-    right: 2rem;
-    transform: translateY(-50%) rotate(90deg);
+    bottom: 1.5rem;
+    right: 4rem;
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    color: rgba(255,255,255,0.18);
+    letter-spacing: 0.2em;
+    color: var(--text3);
     text-transform: uppercase;
-    transform-origin: center center;
-    writing-mode: vertical-rl;
-    z-index: 5;
   }
 
   /* ========================
@@ -444,15 +492,18 @@
   #proof {
     padding: 8rem 4rem;
     border-top: 1px solid var(--border);
+  }
+  .proof-top {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 1.8fr;
     gap: 6rem;
     align-items: start;
+    margin-bottom: 5rem;
   }
-  .proof-left { position: sticky; top: 7rem; }
+  .proof-left-head { }
   .proof-big-num {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(6rem, 12vw, 10rem);
+    font-size: clamp(5rem, 10vw, 9rem);
     line-height: 0.85;
     color: transparent;
     -webkit-text-stroke: 1px var(--border2);
@@ -463,65 +514,97 @@
     font-size: clamp(2rem, 2.8vw, 3rem);
     line-height: 1.15;
     margin-top: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   .proof-title em { font-style: italic; color: var(--accent); }
   .proof-desc {
     color: var(--text2);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     line-height: 1.75;
-    max-width: 32ch;
   }
-  .proof-right {}
-  .proof-list { display: flex; flex-direction: column; gap: 2px; }
-  .proof-item {
+  .proof-right-intro {
+    padding-top: 1rem;
+    font-size: 1.0rem;
+    color: var(--text2);
+    line-height: 1.8;
+    max-width: 58ch;
+  }
+  .proof-right-intro strong { color: var(--text); }
+
+  /* Credential cards — horizontal strip */
+  .proof-credentials {
     display: grid;
-    grid-template-columns: 7rem 1fr;
-    gap: 2rem;
-    padding: 1.75rem 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  .cred-block {
+    padding: 2.5rem 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .cred-block:last-child { border-right: none; }
+  .cred-block::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cred-block:hover::after { opacity: 1; }
+  .cred-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .cred-num span {
+    font-size: 1.4rem;
+    color: var(--accent);
+  }
+  .cred-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
   }
-  .proof-item:first-child { border-top: 1px solid var(--border); }
-  .proof-year {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text3);
-    padding-top: 0.15rem;
-    letter-spacing: 0.05em;
-  }
-  .proof-item-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.35rem;
-  }
-  .proof-item-desc {
-    font-size: 0.835rem;
+  .cred-body {
+    font-size: 0.845rem;
     color: var(--text2);
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
-  /* Observation block */
+  /* Bottom observation block */
   .observation-block {
-    margin-top: 4rem;
-    padding: 2rem;
+    margin-top: 3rem;
+    padding: 2rem 2.5rem;
     border: 1px solid var(--border);
     background: var(--surface);
     position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
   }
-  .observation-block::before {
-    content: '"';
-    position: absolute;
-    top: -1.5rem;
-    left: 1.5rem;
+  .obs-quote-mark {
     font-family: 'DM Serif Display', serif;
-    font-size: 5rem;
+    font-size: 4rem;
     line-height: 1;
     color: var(--border2);
+    align-self: flex-start;
+    margin-top: -0.5rem;
   }
   .observation-text {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     line-height: 1.55;
     color: var(--text);
     margin-bottom: 0.75rem;
@@ -772,17 +855,20 @@
   /* Responsive */
   @media (max-width: 1024px) {
     nav { padding: 1.25rem 2rem; }
-    #hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-right { height: 50vw; min-height: 320px; }
-    .hero-img-overlay { background: linear-gradient(to top, var(--bg) 0%, rgba(10,10,10,0.2) 60%, rgba(10,10,10,0) 100%); }
-    .hero-left { padding: 3rem 2rem 4rem; }
+    .hero-image-band-inner { padding: 0 2rem; gap: 2rem; }
+    .hero-img-frame { width: 200px; height: 240px; }
+    .hero-bottom { padding: 2.5rem 2rem 4rem; }
+    .hero-side-text, .hero-side-text-right { font-size: 0.78rem; max-width: 18ch; }
     #what { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 2rem; }
     #think { padding: 5rem 2rem; }
     .insights-grid { grid-template-columns: 1fr; }
     .insight-block { border-right: none; border-bottom: 1px solid var(--border); }
     .insight-block:last-child { border-bottom: none; }
-    #proof { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
-    .proof-left { position: static; }
+    #proof { padding: 5rem 2rem; }
+    .proof-top { grid-template-columns: 1fr; gap: 2rem; }
+    .proof-credentials { grid-template-columns: 1fr; }
+    .cred-block { border-right: none; border-bottom: 1px solid var(--border); }
+    .cred-block:last-child { border-bottom: none; }
     #process { padding: 5rem 2rem; }
     .steps-row { grid-template-columns: 1fr 1fr; }
     .step:nth-child(2) { border-right: none; }
@@ -797,13 +883,23 @@
   @media (max-width: 640px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.2rem; }
+    .hero-image-band-inner { flex-direction: column; align-items: center; gap: 1.5rem; padding: 0 1.5rem; }
+    .hero-side-left { text-align: center; }
+    .hero-side-left .hero-side-text { margin: 0 auto; }
+    .hero-side-right { text-align: center; }
+    .hero-side-text-right { margin: 0 auto; }
+    .hero-img-frame { width: 180px; height: 215px; }
+    .hero-bottom { padding: 2rem 1.5rem 3.5rem; }
+    .hero-edge { gap: 2rem; }
+    .hero-corner-label { display: none; }
     .steps-row { grid-template-columns: 1fr; }
     .step { border-right: none; border-bottom: 1px solid var(--border); }
     .step:last-child { border-bottom: none; }
     .step-arrow { display: none !important; }
-    .proof-item { grid-template-columns: 5rem 1fr; gap: 1rem; }
     .service-item { grid-template-columns: 2rem 1fr; }
     .service-tag { display: none; }
+    .observation-block { grid-template-columns: 1fr; gap: 0.5rem; }
+    .obs-quote-mark { font-size: 3rem; }
   }
 </style>
 </head>
@@ -826,17 +922,37 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-left">
+  <!-- Image band: photo centered, flanked by small context text -->
+  <div class="hero-image-band">
+    <div class="hero-image-band-inner">
+      <div class="hero-side-left fade-in">
+        <div class="hero-side-label">Specialisation</div>
+        <div class="hero-side-text">Anti-Sybil strategy, growth campaign design &amp; user retention systems for Web3 protocols.</div>
+      </div>
+      <div class="hero-img-frame fade-in">
+        <img src="profile.png" alt="Md Fahad Bin Firdous">
+        <div class="hero-img-shadow"></div>
+      </div>
+      <div class="hero-side-right fade-in">
+        <div class="hero-side-label">Based in</div>
+        <div class="hero-side-text-right">Bangladesh · Available globally · Async-first workflow across time zones.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Name + headline + CTAs centered below -->
+  <div class="hero-bottom">
     <div class="hero-eyebrow fade-in">
       <div class="hero-eyebrow-line"></div>
       <span class="section-label">Web3 Growth · Anti-Sybil Strategy</span>
+      <div class="hero-eyebrow-line"></div>
     </div>
     <h1 class="hero-name fade-in">
       Md Fahad<br><em>Bin Firdous</em>
     </h1>
     <p class="hero-headline fade-in">
       I help Web3 projects <strong>attract real users</strong> — not airdrop farmers who leave the moment rewards stop.
-      My edge: 6+ years spent inside the ecosystems I now help projects defend against.
+      Having spent years deep inside these campaign ecosystems, I understand the exact mechanics projects need to defend against.
     </p>
     <div class="hero-edge fade-in">
       <div>
@@ -856,15 +972,7 @@
       <a href="#contact" class="btn-primary">Work With Me</a>
       <a href="#think" class="btn-ghost">How I Think</a>
     </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-img-wrap">
-      <img src="profile.png" alt="Md Fahad Bin Firdous">
-      <div class="hero-img-overlay"></div>
-      <div class="hero-img-overlay-bottom"></div>
-    </div>
-    <div class="hero-vert-text">Web3 Growth Strategist · Bangladesh</div>
+    <div class="hero-corner-label">Scroll to explore</div>
   </div>
 </section>
 
@@ -951,47 +1059,42 @@
 
 <!-- PROOF OF EXPERIENCE -->
 <section id="proof">
-  <div class="proof-left fade-in">
-    <div class="proof-big-num">6+</div>
-    <span class="section-label">03 — Background</span>
-    <h2 class="proof-title">Proof of<br><em>Experience</em></h2>
-    <p class="proof-desc">No fabricated client logos. No inflated numbers. Just documented exposure, pattern recognition built across cycles, and honest framing of what that means for your project.</p>
-  </div>
-  <div class="proof-right">
-    <div class="proof-list">
-      <div class="proof-item fade-in">
-        <div class="proof-year">2018 – 2020</div>
-        <div>
-          <div class="proof-item-title">Early Ecosystem Participation</div>
-          <div class="proof-item-desc">Began participating in early testnet programs and airdrop campaigns across EVM chains. Developed first-hand understanding of how project teams structure incentives and where the gaps appear.</div>
-        </div>
-      </div>
-      <div class="proof-item fade-in">
-        <div class="proof-year">2020 – 2022</div>
-        <div>
-          <div class="proof-item-title">Multi-Chain Campaign Exposure</div>
-          <div class="proof-item-desc">Participated across Cosmos, Solana, Layer 2, and DeFi ecosystems through bull and bear cycles. Observed how projects handled user behavior differently — and which approaches created lasting communities versus temporary liquidity.</div>
-        </div>
-      </div>
-      <div class="proof-item fade-in">
-        <div class="proof-year">2022 – 2023</div>
-        <div>
-          <div class="proof-item-title">Pattern Recognition at Scale</div>
-          <div class="proof-item-desc">Post-bear market offered a clear view of which communities survived token price decline. Began systematically documenting the behavioral differences between retained users and reward-exit users across 50+ protocols.</div>
-        </div>
-      </div>
-      <div class="proof-item fade-in">
-        <div class="proof-year">2023 – Now</div>
-        <div>
-          <div class="proof-item-title">Strategic Analysis & Content</div>
-          <div class="proof-item-desc">Shifted from participation to analysis. Producing SEO-optimized content on campaign design, airdrop mechanics, and on-chain behavior. Applying accumulated pattern recognition to help projects build defensible user bases.</div>
-        </div>
-      </div>
+  <div class="proof-top">
+    <div class="proof-left-head fade-in">
+      <div class="proof-big-num">6+</div>
+      <span class="section-label">03 — Background</span>
+      <h2 class="proof-title">What I<br>Actually <em>Know</em></h2>
+      <p class="proof-desc">No fabricated client logos. No inflated numbers. What follows is an honest account of what 6+ years inside these ecosystems teaches you — things you cannot learn from the outside.</p>
     </div>
+    <p class="proof-right-intro fade-in">
+      I didn't study Web3 growth from a distance. I participated — in testnets, early airdrops, multi-chain campaigns, DeFi protocols, and community incentive systems across multiple market cycles.<br><br>
+      That means I've seen the same psychological patterns repeat. I know how farmers think because I operated in the same environments. I know where retention breaks down because I was on the other side when it happened. <strong>The strategies I now build for projects come from that accumulated pattern recognition — not theory.</strong>
+    </p>
+  </div>
 
-    <div class="observation-block fade-in">
-      <div class="observation-text">The most important thing I learned is that real users and farmers respond differently to exactly the same incentive — you just have to know what to look for.</div>
-      <div class="observation-attr">— Pattern recognized across 6+ years</div>
+  <div class="proof-credentials">
+    <div class="cred-block fade-in">
+      <div class="cred-num">Multi<span>-chain</span></div>
+      <div class="cred-title">Ecosystem Depth</div>
+      <div class="cred-body">Participated across EVM, Cosmos, Solana, and Layer 2 ecosystems through both bull and bear cycles. Each environment has different user behavior patterns — and different Sybil attack vectors. I've observed them all directly.</div>
+    </div>
+    <div class="cred-block fade-in">
+      <div class="cred-num">Bull<span> &amp; bear</span></div>
+      <div class="cred-title">Full-Cycle Observation</div>
+      <div class="cred-body">Watching communities collapse after TGE isn't theory for me — I was present for it, repeatedly. I know which projects retained users through price pressure and exactly what they did differently from the ones that didn't.</div>
+    </div>
+    <div class="cred-block fade-in">
+      <div class="cred-num">100<span>s+</span></div>
+      <div class="cred-title">Campaigns Studied</div>
+      <div class="cred-body">Across years of participation and analysis, I've observed hundreds of incentive campaigns — their structures, their community responses, and their long-term outcomes. The patterns are remarkably consistent once you know what to look for.</div>
+    </div>
+  </div>
+
+  <div class="observation-block fade-in">
+    <div class="obs-quote-mark">"</div>
+    <div>
+      <div class="observation-text">Real users and farmers respond differently to exactly the same incentive. You just have to know what signals to watch — and most projects aren't watching the right ones.</div>
+      <div class="observation-attr">— Observed across 6+ years inside campaign ecosystems</div>
     </div>
   </div>
 </section>
