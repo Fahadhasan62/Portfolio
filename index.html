@@ -1,258 +1,1141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Md Fahad Bin Firdous</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Fahad Bin Firdous — Web3 Growth Strategist</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0a;
-    --ink: #e8e8e8;
-    --mute: #6b6b6b;
-    --line: #161616;
-    --accent: #d4ff3a;
+    --bg2: #0f0f0f;
+    --surface: #141414;
+    --border: #1e1e1e;
+    --border2: #2a2a2a;
+    --text: #e8e4dc;
+    --text2: #8a8070;
+    --text3: #5a5248;
+    --accent: #c8b89a;
+    --accent2: #a89070;
+    --green: #4a7c59;
+    --green-light: #6aad7a;
   }
-  * { -webkit-font-smoothing: antialiased; }
-  html, body { background: var(--bg); color: var(--ink); }
-  body { font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: -0.005em; }
-  .serif { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.035em; }
-  .serif-i { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; letter-spacing: -0.035em; }
-  .mute { color: var(--mute); }
-  .line-t { border-top: 1px solid var(--line); }
-  .line-b { border-bottom: 1px solid var(--line); }
-  .accent { color: var(--accent); }
-  .num { font-family: 'Fraunces', serif; font-feature-settings: "tnum"; font-weight: 300; }
-  .label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mute); }
-  .link-u {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(200,184,154,0.35);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease, width 0.25s ease, height 0.25s ease;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Typography */
+  .font-serif { font-family: 'DM Serif Display', serif; }
+  .font-mono { font-family: 'DM Mono', monospace; }
+  .font-sans { font-family: 'Syne', sans-serif; }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(30,30,30,0.5);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Horizontal rule decoration */
+  .rule {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+  .rule-accent {
+    height: 1px;
+    background: linear-gradient(to right, var(--accent2), transparent);
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+
+  /* ========================
+     HERO
+     ======================== */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    padding-top: 5rem;
     position: relative;
-    display: inline-block;
+    overflow: hidden;
   }
-  .link-u::after {
-    content: "";
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 3rem 5rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img-wrap {
     position: absolute;
-    left: 0; bottom: -2px;
-    width: 100%; height: 1px;
-    background: currentColor;
-    opacity: 0.3;
-    transition: opacity 0.2s;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
   }
-  .link-u:hover::after { opacity: 1; }
-  ::selection { background: var(--accent); color: #000; }
+  .hero-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(15%) contrast(1.05);
+  }
+  .hero-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      var(--bg) 0%,
+      rgba(10,10,10,0.12) 30%,
+      rgba(10,10,10,0) 100%
+    );
+  }
+  .hero-img-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, var(--bg), transparent);
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow-line {
+    width: 2.5rem;
+    height: 1px;
+    background: var(--accent2);
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    font-weight: 400;
+    color: var(--text2);
+    max-width: 36ch;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .hero-headline strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .hero-edge {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 3rem;
+  }
+  .hero-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--text);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--text);
+    color: var(--bg);
+    padding: 0.9rem 2rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-primary:hover {
+    background: var(--accent);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text2);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: 'DM Mono', monospace;
+  }
+  .btn-ghost:hover { color: var(--text); }
+  .btn-ghost::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+  .btn-ghost:hover::after { transform: translateX(4px); }
+
+  /* Vertical text on hero right */
+  .hero-vert-text {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.18);
+    text-transform: uppercase;
+    transform-origin: center center;
+    writing-mode: vertical-rl;
+    z-index: 5;
+  }
+
+  /* ========================
+     WHAT I DO
+     ======================== */
+  #what {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+  }
+  .what-left {
+    padding-top: 0.3rem;
+  }
+  .what-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    line-height: 1.1;
+    margin-top: 1.5rem;
+    color: var(--text);
+  }
+  .what-title em { font-style: italic; color: var(--accent); }
+  .what-right {}
+  .what-intro {
+    font-size: 1.1rem;
+    color: var(--text2);
+    max-width: 55ch;
+    line-height: 1.75;
+    margin-bottom: 4rem;
+  }
+  .what-intro strong { color: var(--text); font-weight: 600; }
+
+  .services-list { display: flex; flex-direction: column; gap: 0; }
+  .service-item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: start;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    gap: 1.5rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .service-item:last-child { border-bottom: 1px solid var(--border); }
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text3);
+    padding-top: 0.2rem;
+  }
+  .service-body {}
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .service-desc {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.65;
+    max-width: 50ch;
+  }
+  .service-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 0.25rem;
+  }
+
+  /* ========================
+     HOW I THINK
+     ======================== */
+  #think {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .think-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    gap: 2rem;
+  }
+  .think-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    line-height: 1.1;
+    margin-top: 1.5rem;
+    max-width: 12ch;
+  }
+  .think-title em { font-style: italic; color: var(--accent); }
+  .think-intro-text {
+    max-width: 42ch;
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    padding-top: 1.8rem;
+  }
+  .think-intro-text strong { color: var(--text); }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  .insight-block {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .insight-block:last-child { border-right: none; }
+  .insight-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .insight-block:hover::before { opacity: 1; }
+  .insight-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .insight-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .insight-quote em { font-style: italic; color: var(--accent); }
+  .insight-body {
+    font-size: 0.845rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ========================
+     PROOF
+     ======================== */
+  #proof {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .proof-left { position: sticky; top: 7rem; }
+  .proof-big-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(6rem, 12vw, 10rem);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border2);
+    margin-bottom: 1.5rem;
+  }
+  .proof-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 2.8vw, 3rem);
+    line-height: 1.15;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .proof-title em { font-style: italic; color: var(--accent); }
+  .proof-desc {
+    color: var(--text2);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 32ch;
+  }
+  .proof-right {}
+  .proof-list { display: flex; flex-direction: column; gap: 2px; }
+  .proof-item {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .proof-item:first-child { border-top: 1px solid var(--border); }
+  .proof-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text3);
+    padding-top: 0.15rem;
+    letter-spacing: 0.05em;
+  }
+  .proof-item-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+  .proof-item-desc {
+    font-size: 0.835rem;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  /* Observation block */
+  .observation-block {
+    margin-top: 4rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+  }
+  .observation-block::before {
+    content: '"';
+    position: absolute;
+    top: -1.5rem;
+    left: 1.5rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--border2);
+  }
+  .observation-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .observation-attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ========================
+     HOW I WORK
+     ======================== */
+  #process {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .process-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: end;
+  }
+  .process-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    line-height: 1.1;
+    margin-top: 1.5rem;
+  }
+  .process-title em { font-style: italic; color: var(--accent); }
+  .process-subtitle {
+    color: var(--text2);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 45ch;
+    padding-bottom: 0.5rem;
+  }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  .step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text3);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .step-desc {
+    font-size: 0.835rem;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+  .step-arrow {
+    position: absolute;
+    top: 2.5rem;
+    right: -0.7rem;
+    width: 1.4rem;
+    height: 1px;
+    background: var(--border2);
+    z-index: 1;
+  }
+  .step-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--border2);
+    border-right: 1px solid var(--border2);
+    transform: rotate(45deg);
+  }
+  .step:last-child .step-arrow { display: none; }
+
+  /* ========================
+     CONTACT
+     ======================== */
+  #contact {
+    padding: 8rem 4rem 6rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact-left {}
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact-title em { font-style: italic; color: var(--accent); }
+  .contact-desc {
+    color: var(--text2);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 38ch;
+    margin-bottom: 3rem;
+  }
+  .contact-desc strong { color: var(--text); }
+
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .contact-channel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text2);
+    transition: color 0.2s;
+    group: true;
+  }
+  .contact-channel:first-child { border-top: 1px solid var(--border); }
+  .contact-channel:hover { color: var(--text); }
+  .contact-channel:hover .cc-arrow { transform: translateX(4px); }
+  .cc-left { display: flex; flex-direction: column; gap: 0.2rem; }
+  .cc-platform {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+  .cc-handle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: inherit;
+  }
+  .cc-arrow {
+    font-size: 1rem;
+    transition: transform 0.2s;
+    color: var(--text3);
+  }
+
+  /* Right side decorative */
+  .contact-right {
+    padding-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .contact-note {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .contact-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .contact-note-text {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .contact-note-text strong { color: var(--text); }
+  .availability-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green-light);
+    margin-right: 0.5rem;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+  .footer-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text3);
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.018;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Page load animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    nav { padding: 1.25rem 2rem; }
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { height: 50vw; min-height: 320px; }
+    .hero-img-overlay { background: linear-gradient(to top, var(--bg) 0%, rgba(10,10,10,0.2) 60%, rgba(10,10,10,0) 100%); }
+    .hero-left { padding: 3rem 2rem 4rem; }
+    #what { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 2rem; }
+    #think { padding: 5rem 2rem; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .insight-block { border-right: none; border-bottom: 1px solid var(--border); }
+    .insight-block:last-child { border-bottom: none; }
+    #proof { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+    .proof-left { position: static; }
+    #process { padding: 5rem 2rem; }
+    .steps-row { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(2) { border-right: none; }
+    .step:nth-child(2) .step-arrow { display: none; }
+    .step:nth-child(3) { border-right: 1px solid var(--border); }
+    .step:nth-child(3) .step-arrow { display: block; }
+    #contact { grid-template-columns: 1fr; padding: 5rem 2rem 4rem; gap: 3rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .process-top { grid-template-columns: 1fr; }
+    .think-header { flex-direction: column; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .steps-row { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-arrow { display: none !important; }
+    .proof-item { grid-template-columns: 5rem 1fr; gap: 1rem; }
+    .service-item { grid-template-columns: 2rem 1fr; }
+    .service-tag { display: none; }
+  }
 </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
-<nav class="px-6 md:px-10 py-6 flex items-center justify-between">
-  <span class="label">F.B.F / 2025</span>
-  <span class="label">Dhaka · Remote</span>
+<nav>
+  <span class="nav-logo">Fahad · Web3 Strategist</span>
+  <div class="nav-links">
+    <a href="#what">Services</a>
+    <a href="#think">Thinking</a>
+    <a href="#proof">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="px-6 md:px-10 pt-16 md:pt-28 pb-24 md:pb-40">
-  <div class="grid grid-cols-12 gap-8 md:gap-12">
-
-    <div class="col-span-12 lg:col-span-5 order-1">
-      <div class="aspect-[4/5] w-full max-w-md overflow-hidden">
-        <img src="profile.png" alt="Md Fahad Bin Firdous" class="w-full h-full object-cover" />
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-in">
+      <div class="hero-eyebrow-line"></div>
+      <span class="section-label">Web3 Growth · Anti-Sybil Strategy</span>
+    </div>
+    <h1 class="hero-name fade-in">
+      Md Fahad<br><em>Bin Firdous</em>
+    </h1>
+    <p class="hero-headline fade-in">
+      I help Web3 projects <strong>attract real users</strong> — not airdrop farmers who leave the moment rewards stop.
+      My edge: 6+ years spent inside the ecosystems I now help projects defend against.
+    </p>
+    <div class="hero-edge fade-in">
+      <div>
+        <div class="hero-stat-num">6+</div>
+        <div class="hero-stat-label">Years in Crypto Ecosystems</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100s</div>
+        <div class="hero-stat-label">Campaigns Analyzed</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">∞</div>
+        <div class="hero-stat-label">Sybil Patterns Recognized</div>
       </div>
     </div>
-
-    <div class="col-span-12 lg:col-span-7 order-2 lg:pl-8 flex flex-col justify-end">
-      <h1 class="serif text-[56px] sm:text-[80px] md:text-[104px] lg:text-[128px] leading-[0.92]">
-        Md Fahad<br/>
-        Bin <span class="serif-i accent">Firdous</span>
-      </h1>
-
-      <p class="serif text-xl md:text-2xl mt-10 md:mt-14 max-w-xl leading-snug">
-        I help Web3 projects attract real users instead of airdrop farmers.
-      </p>
-
-      <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-        <a href="https://t.me/" target="_blank" class="link-u">Telegram</a>
-        <a href="https://twitter.com/" target="_blank" class="link-u">Twitter</a>
-        <a href="mailto:hello@example.com" class="link-u">Email</a>
-      </div>
+    <div class="hero-cta fade-in">
+      <a href="#contact" class="btn-primary">Work With Me</a>
+      <a href="#think" class="btn-ghost">How I Think</a>
     </div>
+  </div>
 
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <img src="profile.png" alt="Md Fahad Bin Firdous">
+      <div class="hero-img-overlay"></div>
+      <div class="hero-img-overlay-bottom"></div>
+    </div>
+    <div class="hero-vert-text">Web3 Growth Strategist · Bangladesh</div>
   </div>
 </section>
 
-<!-- ABOUT / POSITIONING -->
-<section class="px-6 md:px-10 py-24 md:py-32 line-t">
-  <div class="grid grid-cols-12 gap-8">
-    <div class="col-span-12 md:col-span-3">
-      <span class="label">Note</span>
-    </div>
-    <div class="col-span-12 md:col-span-8 md:col-start-4">
-      <p class="serif text-2xl md:text-4xl leading-[1.2]">
-        Six years inside the airdrop economy. No formal employer. No titles. Just time spent watching how farmers adapt and how teams reward the wrong people.
-      </p>
+<div class="rule"></div>
+
+<!-- WHAT I DO -->
+<section id="what">
+  <div class="what-left fade-in">
+    <span class="section-label">01 — Services</span>
+    <h2 class="what-title">What<br>I <em>Do</em></h2>
+  </div>
+  <div class="what-right">
+    <p class="what-intro fade-in">
+      Most Web3 growth consultants optimize for vanity metrics: wallet count, Twitter followers, Discord members. I optimize for what comes after launch day — <strong>the users who actually stay</strong>.
+    </p>
+    <div class="services-list">
+      <div class="service-item fade-in">
+        <span class="service-num">01</span>
+        <div class="service-body">
+          <div class="service-title">Anti-Sybil Campaign Architecture</div>
+          <div class="service-desc">Designing airdrop and incentive structures with built-in behavioral gates that reward genuine engagement and make bot-farming economically unviable — without creating friction for real users.</div>
+        </div>
+        <span class="service-tag">Strategy</span>
+      </div>
+      <div class="service-item fade-in">
+        <span class="service-num">02</span>
+        <div class="service-body">
+          <div class="service-title">User Behavior Analysis</div>
+          <div class="service-desc">Mapping on-chain activity patterns to identify where your community segments into real users, passive holders, and reward-extractors. Each group requires a different retention lever.</div>
+        </div>
+        <span class="service-tag">Analysis</span>
+      </div>
+      <div class="service-item fade-in">
+        <span class="service-num">03</span>
+        <div class="service-body">
+          <div class="service-title">Retention System Design</div>
+          <div class="service-desc">Building post-TGE engagement loops that shift user motivation from "waiting for the next drop" to genuine protocol utility — turning transient attention into compounding product loyalty.</div>
+        </div>
+        <span class="service-tag">Systems</span>
+      </div>
+      <div class="service-item fade-in">
+        <span class="service-num">04</span>
+        <div class="service-body">
+          <div class="service-title">Testnet & Growth Campaign Design</div>
+          <div class="service-desc">Structuring pre-launch testnet programs that generate meaningful protocol data, filter signal from noise in your community, and convert testers into long-term stakeholders.</div>
+        </div>
+        <span class="service-tag">Growth</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PRACTICE -->
-<section class="px-6 md:px-10 py-24 md:py-32 line-t">
-  <div class="grid grid-cols-12 gap-8 mb-16 md:mb-24">
-    <div class="col-span-12 md:col-span-3">
-      <span class="label">01 — Practice</span>
+<!-- HOW I THINK -->
+<section id="think">
+  <div class="think-header">
+    <div class="fade-in">
+      <span class="section-label">02 — Mental Models</span>
+      <h2 class="think-title">How<br>I <em>Think</em></h2>
     </div>
+    <p class="think-intro-text fade-in">
+      These aren't frameworks copied from a playbook. They come from years of watching the same patterns play out across hundreds of campaigns — from the other side of the fence.
+      <br><br>
+      <strong>I was the user projects try to filter out.</strong> Now I help projects build systems that do the filtering.
+    </p>
   </div>
-
-  <div class="grid grid-cols-12 gap-8">
-    <div class="col-span-12 md:col-span-3 hidden md:block"></div>
-    <div class="col-span-12 md:col-span-8 md:col-start-4">
-
-      <div class="grid grid-cols-12 gap-6 py-8 line-t items-baseline">
-        <span class="col-span-2 md:col-span-1 num text-lg mute">i</span>
-        <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Anti-Sybil strategy</h3>
-        <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">Detection frameworks applied before rewards go out — not after.</p>
-      </div>
-
-      <div class="grid grid-cols-12 gap-6 py-8 line-t items-baseline">
-        <span class="col-span-2 md:col-span-1 num text-lg mute">ii</span>
-        <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Campaign design</h3>
-        <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">Incentive structures that make farming unattractive instead of trivial.</p>
-      </div>
-
-      <div class="grid grid-cols-12 gap-6 py-8 line-t line-b items-baseline">
-        <span class="col-span-2 md:col-span-1 num text-lg mute">iii</span>
-        <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Behavior insight</h3>
-        <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">Pattern recognition from the farmer's side of the table.</p>
-      </div>
-
+  <div class="insights-grid">
+    <div class="insight-block fade-in">
+      <div class="insight-icon">Observation 01 · Farming</div>
+      <div class="insight-quote">The problem isn't<br><em>bad actors</em> — it's bad incentives.</div>
+      <div class="insight-body">Sybil attacks are rational behavior. When a protocol makes farming more profitable than genuine use, it selects for farmers. The fix isn't stricter KYC — it's aligning economic incentives with the behaviors you actually want to see.</div>
+    </div>
+    <div class="insight-block fade-in">
+      <div class="insight-icon">Observation 02 · Retention</div>
+      <div class="insight-quote">Airdrops create <em>attention</em>, not users.</div>
+      <div class="insight-body">Most projects measure campaign success at distribution day. Real retention is measured 90 days after TGE — when price pressure hits and the farmer exodus begins. Projects that survive this cliff had users before the airdrop, not because of it.</div>
+    </div>
+    <div class="insight-block fade-in">
+      <div class="insight-icon">Observation 03 · Behavior</div>
+      <div class="insight-quote">On-chain data tells you<br><em>what</em>, not why.</div>
+      <div class="insight-body">Wallet behavior is a symptom. Understanding why users engage — or disengage — requires reading the social layer: Telegram discussions, Discord tone shifts, Twitter sentiment before on-chain patterns catch up. The signal lives in community dynamics first.</div>
     </div>
   </div>
 </section>
 
-<!-- SIGNAL -->
-<section class="px-6 md:px-10 py-24 md:py-32 line-t">
-  <div class="grid grid-cols-12 gap-8">
-    <div class="col-span-12 md:col-span-3">
-      <span class="label">02 — Signal</span>
-    </div>
-
-    <div class="col-span-12 md:col-span-8 md:col-start-4">
-      <div class="grid grid-cols-3 gap-6 md:gap-12">
-
+<!-- PROOF OF EXPERIENCE -->
+<section id="proof">
+  <div class="proof-left fade-in">
+    <div class="proof-big-num">6+</div>
+    <span class="section-label">03 — Background</span>
+    <h2 class="proof-title">Proof of<br><em>Experience</em></h2>
+    <p class="proof-desc">No fabricated client logos. No inflated numbers. Just documented exposure, pattern recognition built across cycles, and honest framing of what that means for your project.</p>
+  </div>
+  <div class="proof-right">
+    <div class="proof-list">
+      <div class="proof-item fade-in">
+        <div class="proof-year">2018 – 2020</div>
         <div>
-          <div class="num text-5xl md:text-7xl">6<span class="accent">+</span></div>
-          <div class="label mt-3">Years in</div>
+          <div class="proof-item-title">Early Ecosystem Participation</div>
+          <div class="proof-item-desc">Began participating in early testnet programs and airdrop campaigns across EVM chains. Developed first-hand understanding of how project teams structure incentives and where the gaps appear.</div>
         </div>
-
+      </div>
+      <div class="proof-item fade-in">
+        <div class="proof-year">2020 – 2022</div>
         <div>
-          <div class="num text-5xl md:text-7xl">100<span class="accent">+</span></div>
-          <div class="label mt-3">Campaigns</div>
+          <div class="proof-item-title">Multi-Chain Campaign Exposure</div>
+          <div class="proof-item-desc">Participated across Cosmos, Solana, Layer 2, and DeFi ecosystems through bull and bear cycles. Observed how projects handled user behavior differently — and which approaches created lasting communities versus temporary liquidity.</div>
         </div>
-
+      </div>
+      <div class="proof-item fade-in">
+        <div class="proof-year">2022 – 2023</div>
         <div>
-          <div class="num text-5xl md:text-7xl accent">—</div>
-          <div class="label mt-3">Titles</div>
+          <div class="proof-item-title">Pattern Recognition at Scale</div>
+          <div class="proof-item-desc">Post-bear market offered a clear view of which communities survived token price decline. Began systematically documenting the behavioral differences between retained users and reward-exit users across 50+ protocols.</div>
         </div>
-
+      </div>
+      <div class="proof-item fade-in">
+        <div class="proof-year">2023 – Now</div>
+        <div>
+          <div class="proof-item-title">Strategic Analysis & Content</div>
+          <div class="proof-item-desc">Shifted from participation to analysis. Producing SEO-optimized content on campaign design, airdrop mechanics, and on-chain behavior. Applying accumulated pattern recognition to help projects build defensible user bases.</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- INSIGHTS -->
-<section class="px-6 md:px-10 py-24 md:py-32 line-t">
-  <div class="grid grid-cols-12 gap-8 mb-16 md:mb-24">
-    <div class="col-span-12 md:col-span-3">
-      <span class="label">03 — Field notes</span>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-12 gap-8">
-    <div class="col-span-12 md:col-span-3 hidden md:block"></div>
-    <div class="col-span-12 md:col-span-9 md:col-start-4">
-
-      <article class="py-10 line-t grid grid-cols-12 gap-6">
-        <div class="col-span-12 md:col-span-2 label pt-2">Behavior</div>
-        <div class="col-span-12 md:col-span-10">
-          <h3 class="serif text-2xl md:text-3xl leading-tight">The farmer optimizes for the minimum viable action.</h3>
-          <p class="mute text-sm mt-3 max-w-xl leading-relaxed">If a quest can be scripted, it already is. The lowest-cost repeatable unit wins every leaderboard.</p>
-        </div>
-      </article>
-
-      <article class="py-10 line-t grid grid-cols-12 gap-6">
-        <div class="col-span-12 md:col-span-2 label pt-2">Exploit</div>
-        <div class="col-span-12 md:col-span-10">
-          <h3 class="serif text-2xl md:text-3xl leading-tight">Opaque points systems leak faster than token drops.</h3>
-          <p class="mute text-sm mt-3 max-w-xl leading-relaxed">Hidden formulas get reverse-engineered in days. Asymmetric information favors whoever is watching most closely.</p>
-        </div>
-      </article>
-
-      <article class="py-10 line-t grid grid-cols-12 gap-6">
-        <div class="col-span-12 md:col-span-2 label pt-2">Retention</div>
-        <div class="col-span-12 md:col-span-10">
-          <h3 class="serif text-2xl md:text-3xl leading-tight">Retention fails because the product was never the reward.</h3>
-          <p class="mute text-sm mt-3 max-w-xl leading-relaxed">When the incentive ends, the behavior ends. Real users come back for reasons that exist outside the drop.</p>
-        </div>
-      </article>
-
-      <article class="py-10 line-t line-b grid grid-cols-12 gap-6">
-        <div class="col-span-12 md:col-span-2 label pt-2">Detection</div>
-        <div class="col-span-12 md:col-span-10">
-          <h3 class="serif text-2xl md:text-3xl leading-tight">Wallet clustering alone catches only the lazy ones.</h3>
-          <p class="mute text-sm mt-3 max-w-xl leading-relaxed">Funding graphs, timing, and behavioral entropy matter more than the obvious tells. The good farms figured this out years ago.</p>
-        </div>
-      </article>
-
+    <div class="observation-block fade-in">
+      <div class="observation-text">The most important thing I learned is that real users and farmers respond differently to exactly the same incentive — you just have to know what to look for.</div>
+      <div class="observation-attr">— Pattern recognized across 6+ years</div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="px-6 md:px-10 py-24 md:py-32 line-t">
-  <div class="grid grid-cols-12 gap-8">
-    <div class="col-span-12 md:col-span-3">
-      <span class="label">04 — Process</span>
+<!-- HOW I WORK -->
+<section id="process">
+  <div class="process-top">
+    <div class="fade-in">
+      <span class="section-label">04 — Process</span>
+      <h2 class="process-title">How I<br><em>Work</em></h2>
     </div>
-
-    <div class="col-span-12 md:col-span-8 md:col-start-4">
-      <ol class="serif text-3xl md:text-5xl leading-[1.15] space-y-4 md:space-y-6">
-        <li><span class="num mute text-lg align-top mr-4">01</span>Review.</li>
-        <li><span class="num mute text-lg align-top mr-4">02</span>Identify weaknesses.</li>
-        <li><span class="num mute text-lg align-top mr-4">03</span>Redesign.</li>
-        <li><span class="num mute text-lg align-top mr-4">04</span><span class="serif-i">Launch.</span></li>
-      </ol>
+    <p class="process-subtitle fade-in">Every engagement starts with understanding your current user reality — not your ideal-state narrative. Strategy follows diagnosis, not the other way around.</p>
+  </div>
+  <div class="steps-row">
+    <div class="step fade-in">
+      <div class="step-num">Step 01</div>
+      <div class="step-title">Ecosystem Diagnosis</div>
+      <div class="step-desc">Map your current community across behavioral segments. Identify your real user base, your passive holders, and your farming exposure before anything else.</div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">Step 02</div>
+      <div class="step-title">Incentive Audit</div>
+      <div class="step-desc">Audit your existing or planned campaign structure. Find where the economic logic rewards the wrong behaviors and where genuine users are being accidentally filtered out.</div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">Step 03</div>
+      <div class="step-title">System Redesign</div>
+      <div class="step-desc">Rebuild the campaign or retention architecture with behavioral gates, layered engagement requirements, and post-distribution engagement loops that maintain utility beyond token price.</div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">Step 04</div>
+      <div class="step-title">Signal Monitoring</div>
+      <div class="step-desc">Define the behavioral signals that indicate healthy growth versus synthetic activity. Build a monitoring framework so the project team can read community health independently going forward.</div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="px-6 md:px-10 pt-32 md:pt-48 pb-24 md:pb-32 line-t">
-  <div class="grid grid-cols-12 gap-8">
-    <div class="col-span-12 md:col-span-3">
-      <span class="label">05 — End</span>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <span class="section-label fade-in">05 — Contact</span>
+    <h2 class="contact-title fade-in">Let's<br><em>Talk</em></h2>
+    <p class="contact-desc fade-in">
+      If your project is planning a campaign launch, post-TGE retention strategy, or community health audit — <strong>reach out directly</strong>. I don't do discovery calls that go nowhere.
+    </p>
+    <div class="contact-channels">
+      <a href="https://t.me/Fahadazad62" target="_blank" class="contact-channel fade-in">
+        <div class="cc-left">
+          <span class="cc-platform">Telegram</span>
+          <span class="cc-handle">@Fahadazad62</span>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
+      <a href="https://twitter.com/fahadhasan62" target="_blank" class="contact-channel fade-in">
+        <div class="cc-left">
+          <span class="cc-platform">Twitter / X</span>
+          <span class="cc-handle">@fahadhasan62</span>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
+      <a href="mailto:fahad.web3growth@gmail.com" class="contact-channel fade-in">
+        <div class="cc-left">
+          <span class="cc-platform">Email</span>
+          <span class="cc-handle">fahad.web3growth@gmail.com</span>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
     </div>
+  </div>
 
-    <div class="col-span-12 md:col-span-9">
-      <h2 class="serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
-        Talk to me <span class="serif-i accent">before</span><br/>the snapshot.
-      </h2>
-
-      <div class="mt-16 md:mt-20 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-        <a href="mailto:hello@example.com" class="link-u">hello@example.com</a>
-        <a href="https://t.me/" target="_blank" class="link-u mute hover:text-white transition">Telegram</a>
-        <a href="https://twitter.com/" target="_blank" class="link-u mute hover:text-white transition">Twitter</a>
+  <div class="contact-right">
+    <div class="contact-note fade-in">
+      <div class="contact-note-label">Availability</div>
+      <div class="contact-note-text">
+        <span class="availability-dot"></span>
+        <strong>Open to new engagements.</strong><br><br>
+        Best fit for projects in pre-launch, post-TGE, or actively running campaigns where user quality has become a visible problem.
+      </div>
+    </div>
+    <div class="contact-note fade-in">
+      <div class="contact-note-label">What to include</div>
+      <div class="contact-note-text">
+        Tell me your chain, your campaign timeline, and what your current user retention problem looks like. Even rough framing is enough to start a useful conversation.
+      </div>
+    </div>
+    <div class="contact-note fade-in">
+      <div class="contact-note-label">Location</div>
+      <div class="contact-note-text">
+        Based in <strong>Bangladesh</strong>. Working across time zones. Most Web3 work is async-first anyway.
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="px-6 md:px-10 py-8 line-t flex items-center justify-between">
-  <span class="label">© 2025 F.B.F</span>
-  <a href="#" class="label hover:text-white transition">↑ Top</a>
+<footer>
+  <span class="footer-copy">© 2025 Md Fahad Bin Firdous · Web3 Growth & Anti-Sybil Strategy</span>
+  <span class="footer-right">BD · Web3 · Strategy</span>
 </footer>
 
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '14px';
+      cursor.style.height = '14px';
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '8px';
+      cursor.style.height = '8px';
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+    });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
-```
