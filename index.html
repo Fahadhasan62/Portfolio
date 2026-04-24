@@ -1,938 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Md Fahad Bin Firdous — Web3 Growth & Security Strategist</title>
-  <meta name="description" content="6-year veteran of the crypto trenches. Anti-Sybil defense, TGE execution, and on-chain community intelligence." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            acid: '#00ff88',
-            danger: '#ff3a3a',
-            warn: '#ffb800',
-            void: '#050508',
-            panel: '#0c0c14',
-            border: '#1a1a2e',
-            muted: '#3a3a55',
-            dim: '#7070a0',
-          },
-          fontFamily: {
-            mono: ['"Space Mono"', 'monospace'],
-            display: ['Syne', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    :root {
-      --acid: #00ff88;
-      --danger: #ff3a3a;
-      --warn: #ffb800;
-      --void: #050508;
-      --panel: #0c0c14;
-      --border: #1a1a2e;
-      --muted: #3a3a55;
-      --dim: #7070a0;
-    }
+<title>Md Fahad Bin Firdous — Web3 Growth & Anti-Sybil Strategist</title>
 
-    html { scroll-behavior: smooth; }
+<meta name="description" content="Web3 Growth & Anti-Sybil Strategist. 6+ years in airdrops, testnets, and campaign mechanics. I help protocols attract real users, not bot farms.">
 
-    body {
-      background-color: var(--void);
-      color: #e0e0f0;
-      font-family: 'Space Mono', monospace;
-      overflow-x: hidden;
-      cursor: none;
-    }
+<link href="https://cdn.tailwindcss.com" rel="stylesheet">
 
-    /* === CUSTOM CURSOR === */
-    .cursor {
-      width: 12px; height: 12px;
-      background: var(--acid);
-      border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-      mix-blend-mode: difference;
-    }
-    .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1px solid var(--acid);
-      border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      opacity: 0.5;
-      transition: transform 0.25s ease, opacity 0.2s;
-    }
-
-    /* === HEX GRID BACKGROUND === */
-    .hex-bg {
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(0,255,136,0.04) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,58,58,0.03) 0%, transparent 40%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V18L28 2l28 16v32z' fill='none' stroke='%231a1a2e' stroke-width='0.5'/%3E%3Cpath d='M28 100L0 84V52l28 16 28-16v32z' fill='none' stroke='%231a1a2e' stroke-width='0.5'/%3E%3C/svg%3E");
-    }
-
-    /* === GLITCH EFFECT === */
-    @keyframes glitch {
-      0%   { clip-path: inset(0 0 95% 0); transform: translate(-2px, 0); }
-      10%  { clip-path: inset(30% 0 40% 0); transform: translate(2px, 0); }
-      20%  { clip-path: inset(70% 0 10% 0); transform: translate(-1px, 0); }
-      30%  { clip-path: inset(10% 0 80% 0); transform: translate(0, 0); }
-      40%  { clip-path: inset(50% 0 30% 0); transform: translate(3px, 0); }
-      50%  { clip-path: inset(0 0 0 0);     transform: translate(0, 0); }
-      100% { clip-path: inset(0 0 0 0);     transform: translate(0, 0); }
-    }
-
-    .glitch {
-      position: relative;
-    }
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%;
-      pointer-events: none;
-    }
-    .glitch::before {
-      color: var(--danger);
-      animation: glitch 4s infinite;
-      opacity: 0.6;
-    }
-    .glitch::after {
-      color: var(--acid);
-      animation: glitch 4s infinite 0.15s;
-      opacity: 0.4;
-    }
-
-    /* === SCAN LINE === */
-    .scanlines::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.15) 2px,
-        rgba(0,0,0,0.15) 4px
-      );
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* === BLINK === */
-    @keyframes blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-    .blink { animation: blink 1s step-end infinite; }
-
-    /* === FLOAT === */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .float { animation: float 5s ease-in-out infinite; }
-
-    /* === FADE IN === */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up { animation: fadeUp 0.7s ease forwards; }
-    .delay-1 { animation-delay: 0.15s; opacity: 0; }
-    .delay-2 { animation-delay: 0.3s;  opacity: 0; }
-    .delay-3 { animation-delay: 0.45s; opacity: 0; }
-    .delay-4 { animation-delay: 0.6s;  opacity: 0; }
-
-    /* === PANEL CARD === */
-    .panel-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-    }
-    .panel-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--acid), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .panel-card:hover::before { opacity: 1; }
-
-    /* === ACID BUTTON === */
-    .btn-acid {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      background: transparent;
-      border: 1px solid var(--acid);
-      color: var(--acid);
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: none;
-      transition: background 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-    }
-    .btn-acid:hover {
-      background: rgba(0,255,136,0.1);
-      box-shadow: 0 0 20px rgba(0,255,136,0.25);
-    }
-
-    /* === STAT NUM === */
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      line-height: 1;
-      background: linear-gradient(135deg, #00ff88, #00d4ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* === PROGRESS BAR === */
-    .progress-bar {
-      height: 3px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--acid), #00d4ff);
-      border-radius: 2px;
-      transform-origin: left;
-      transform: scaleX(0);
-      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* === TAG PILL === */
-    .tag {
-      display: inline-block;
-      padding: 3px 10px;
-      border: 1px solid var(--border);
-      color: var(--dim);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      font-family: 'Space Mono', monospace;
-    }
-    .tag.acid { border-color: rgba(0,255,136,0.3); color: var(--acid); }
-    .tag.red  { border-color: rgba(255,58,58,0.3);  color: var(--danger); }
-    .tag.warn { border-color: rgba(255,184,0,0.3);  color: var(--warn); }
-
-    /* === NAV === */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(5,5,8,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* === TIMELINE DOT === */
-    .timeline-dot {
-      width: 10px; height: 10px;
-      background: var(--acid);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--acid);
-      flex-shrink: 0;
-    }
-
-    /* === NOISE OVERLAY === */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    /* === SCROLL ANIMATION === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section { position: relative; z-index: 1; }
-
-    /* === BENTO GRID === */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: auto;
-      gap: 12px;
-    }
-    .bento-a { grid-column: span 4; }
-    .bento-b { grid-column: span 4; }
-    .bento-c { grid-column: span 4; }
-    .bento-d { grid-column: span 6; }
-    .bento-e { grid-column: span 6; }
-    .bento-f { grid-column: span 12; }
-    .bento-g { grid-column: span 8; }
-    .bento-h { grid-column: span 4; }
-
-    @media (max-width: 1024px) {
-      .bento-a, .bento-b, .bento-c { grid-column: span 6; }
-      .bento-d, .bento-e, .bento-g, .bento-h { grid-column: span 12; }
-    }
-    @media (max-width: 640px) {
-      .bento-a, .bento-b, .bento-c, .bento-d, .bento-e, .bento-g, .bento-h { grid-column: span 12; }
-    }
-
-    /* Shield SVG pulse */
-    @keyframes pulse-ring {
-      0% { transform: scale(1); opacity: 0.6; }
-      100% { transform: scale(1.5); opacity: 0; }
-    }
-    .pulse-ring {
-      animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-    }
-  </style>
+<style>
+body {
+  background:#050508;
+  color:#e5e7eb;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.section {max-width:1100px;margin:auto;padding:80px 20px;}
+.card {background:#0c0c14;border:1px solid #1f2937;padding:24px;border-radius:6px;}
+.tag {border:1px solid #374151;padding:4px 10px;font-size:12px;}
+.acid {color:#00ff88;}
+.btn {
+  border:1px solid #00ff88;
+  padding:10px 20px;
+  text-transform:uppercase;
+  font-size:12px;
+}
+.btn:hover {background:rgba(0,255,136,0.1);}
+</style>
 </head>
-<body class="hex-bg">
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<body>
 
-  <!-- ============================================================ NAV -->
-  <nav>
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="font-mono text-sm text-acid">
-        <span class="text-dim">//</span> FAHAD.BIN
-      </div>
-      <div class="hidden md:flex items-center gap-8 font-mono text-xs text-dim uppercase tracking-widest">
-        <a href="#fortress"   class="hover:text-acid transition-colors">The Fortress</a>
-        <a href="#engine"     class="hover:text-acid transition-colors">Growth Engine</a>
-        <a href="#proof"      class="hover:text-acid transition-colors">Proof of Work</a>
-        <a href="#contact"    class="hover:text-acid transition-colors">Deploy</a>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-acid" style="box-shadow:0 0 8px var(--acid)"></span>
-        <span class="font-mono text-xs text-acid">OPEN TO WORK</span>
-      </div>
-    </div>
-  </nav>
+<!-- HERO -->
+<section class="section">
+  <p class="acid text-sm mb-4">WEB3 GROWTH STRATEGIST · ANTI-SYBIL</p>
 
-  <!-- ============================================================ HERO -->
-  <section class="min-h-screen flex flex-col justify-center pt-20 pb-12 px-6 max-w-6xl mx-auto">
-    <div class="mb-6 fade-up delay-1">
-      <span class="tag acid">SINCE 2020 ·  6 YEARS IN THE TRENCHES</span>
-    </div>
+  <h1 class="text-4xl md:text-6xl font-bold mb-6">
+    I help Web3 projects<br>
+    attract <span class="acid">real users</span><br>
+    instead of airdrop farmers
+  </h1>
 
-    <h1 class="font-display font-black leading-none mb-6 fade-up delay-2"
-        style="font-size: clamp(3rem, 8vw, 7rem);">
-      <span class="glitch text-white" data-text="DIGITAL">DIGITAL</span><br />
-      <span class="text-acid glitch" data-text="FORTRESS">FORTRESS</span><br />
-      <span class="text-white" style="font-size:0.5em; font-weight:400; opacity:0.5; letter-spacing:0.3em; font-family:'Space Mono',monospace;">PROTOCOL</span>
-    </h1>
+  <p class="text-gray-400 max-w-xl mb-8">
+    6+ years inside airdrops, testnets, and campaign systems.  
+    I understand how users behave, how farmers exploit systems, and how protocols lose money to fake participation.
+  </p>
 
-    <p class="font-mono text-dim max-w-2xl mb-10 leading-relaxed fade-up delay-3" style="font-size:15px;">
-      I don't manage communities. I run on-chain security operations and build<br class="hidden md:block" />
-      engagement architectures that survive bear markets, bot raids, and TGE chaos.<br />
-      <span class="text-warn">Six years of survival.  Zero rug tolerance.</span>
-    </p>
+  <div class="flex gap-4 flex-wrap">
+    <a href="#contact" class="btn">Hire Me</a>
+    <a href="#case" class="btn" style="border-color:#374151;color:#9ca3af">View Work</a>
+  </div>
+</section>
 
-    <div class="flex flex-wrap gap-4 fade-up delay-4">
-      <a href="#contact" class="btn-acid">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Deploy Me
-      </a>
-      <a href="#proof" class="btn-acid" style="border-color:var(--muted); color:var(--dim);">
-        View Proof of Work
-      </a>
+<!-- PROOF -->
+<section class="section">
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="card">
+      <h3 class="text-2xl acid mb-2">6+</h3>
+      <p class="text-gray-400 text-sm">Years in crypto campaigns & airdrops</p>
     </div>
 
-    <!-- Scrolling ticker -->
-    <div class="mt-20 border-t border-b border-border py-3 overflow-hidden">
-      <div class="flex gap-12 whitespace-nowrap text-xs font-mono text-muted"
-           style="animation: marquee 20s linear infinite; display:flex;">
-        <span>ANTI-SYBIL DEFENSE</span><span class="text-acid">·</span>
-        <span>TGE EXECUTION</span><span class="text-acid">·</span>
-        <span>GALXE / ZEALY QUESTS</span><span class="text-acid">·</span>
-        <span>ARKHAM INTELLIGENCE</span><span class="text-acid">·</span>
-        <span>FUD NEUTRALIZATION</span><span class="text-acid">·</span>
-        <span>WHALE MONITORING</span><span class="text-acid">·</span>
-        <span>ON-CHAIN SURVIVAL</span><span class="text-acid">·</span>
-        <span>ANTI-SYBIL DEFENSE</span><span class="text-acid">·</span>
-        <span>TGE EXECUTION</span><span class="text-acid">·</span>
-        <span>GALXE / ZEALY QUESTS</span><span class="text-acid">·</span>
-        <span>ARKHAM INTELLIGENCE</span><span class="text-acid">·</span>
-        <span>FUD NEUTRALIZATION</span><span class="text-acid">·</span>
-        <span>WHALE MONITORING</span><span class="text-acid">·</span>
-        <span>ON-CHAIN SURVIVAL</span><span class="text-acid">·</span>
-      </div>
+    <div class="card">
+      <h3 class="text-2xl acid mb-2">100+</h3>
+      <p class="text-gray-400 text-sm">Campaigns participated & analyzed</p>
     </div>
-  </section>
 
-  <!-- ============================================================ BENTO STATS -->
-  <section class="py-16 px-6 max-w-6xl mx-auto reveal">
-    <div class="bento-grid">
-
-      <!-- Big stat: Years -->
-      <div class="bento-a panel-card p-8 flex flex-col justify-between" style="min-height:200px;">
-        <div class="tag warn mb-4">EXPERIENCE</div>
-        <div>
-          <div class="stat-num" style="font-size:clamp(4rem,7vw,6rem);">6+</div>
-          <div class="font-mono text-dim text-xs mt-2 uppercase tracking-widest">Years in the Trenches</div>
-        </div>
-        <div class="progress-bar mt-4"><div class="progress-fill" style="width:90%"></div></div>
-      </div>
-
-      <!-- Big stat: Campaigns -->
-      <div class="bento-b panel-card p-8 flex flex-col justify-between" style="min-height:200px;">
-        <div class="tag acid mb-4">CAMPAIGNS</div>
-        <div>
-          <div class="stat-num" style="font-size:clamp(4rem,7vw,6rem);">100+</div>
-          <div class="font-mono text-dim text-xs mt-2 uppercase tracking-widest">Airdrop Ops Executed</div>
-        </div>
-        <div class="progress-bar mt-4"><div class="progress-fill" style="width:100%"></div></div>
-      </div>
-
-      <!-- Sybil stat -->
-      <div class="bento-c panel-card p-8 flex flex-col justify-between" style="min-height:200px; background: linear-gradient(135deg, #0c0c14 0%, #10050a 100%);">
-        <div class="tag red mb-4">THREAT INTEL</div>
-        <div>
-          <div class="stat-num" style="font-size:clamp(3rem,5vw,4.5rem); background: linear-gradient(135deg,#ff3a3a,#ff8c00); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">0%</div>
-          <div class="font-mono text-xs mt-2 uppercase tracking-widest" style="color:var(--danger)">Sybil Tolerance</div>
-        </div>
-        <div class="progress-bar mt-4"><div class="progress-fill" style="width:100%; background: linear-gradient(90deg, #ff3a3a, #ff8c00);"></div></div>
-      </div>
-
-      <!-- Status card -->
-      <div class="bento-d panel-card p-8">
-        <div class="font-mono text-xs text-dim mb-6 uppercase tracking-widest">// CURRENT STACK</div>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-acid flex-shrink-0" style="box-shadow:0 0 6px var(--acid)"></span>
-            <span class="font-mono text-sm">Telegram Admin</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-acid flex-shrink-0" style="box-shadow:0 0 6px var(--acid)"></span>
-            <span class="font-mono text-sm">Discord Guard</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--acid);box-shadow:0 0 6px var(--acid)"></span>
-            <span class="font-mono text-sm">Galxe / Zealy</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></span>
-            <span class="font-mono text-sm">Arkham Intel</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></span>
-            <span class="font-mono text-sm">Twitter/X Growth</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--danger);box-shadow:0 0 6px var(--danger)"></span>
-            <span class="font-mono text-sm">Bot Detection</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Metas seen -->
-      <div class="bento-e panel-card p-8">
-        <div class="font-mono text-xs text-dim mb-6 uppercase tracking-widest">// AIRDROP METAS SURVIVED</div>
-        <div class="space-y-3">
-          <div class="flex justify-between items-center font-mono text-sm">
-            <span class="text-dim">2020 — DeFi Summer</span><span class="text-acid">✓</span>
-          </div>
-          <div class="flex justify-between items-center font-mono text-sm">
-            <span class="text-dim">2021 — NFT Mania</span><span class="text-acid">✓</span>
-          </div>
-          <div class="flex justify-between items-center font-mono text-sm">
-            <span class="text-dim">2022 — Bear Market Grind</span><span class="text-acid">✓</span>
-          </div>
-          <div class="flex justify-between items-center font-mono text-sm">
-            <span class="text-dim">2023 — Layer 2 Wars</span><span class="text-acid">✓</span>
-          </div>
-          <div class="flex justify-between items-center font-mono text-sm">
-            <span class="text-dim">2024–26 — TGE Meta</span><span class="text-acid">ACTIVE</span>
-          </div>
-        </div>
-      </div>
-
+    <div class="card">
+      <h3 class="text-2xl acid mb-2">0%</h3>
+      <p class="text-gray-400 text-sm">Tolerance for fake users</p>
     </div>
-  </section>
 
-  <!-- ============================================================ THE FORTRESS -->
-  <section id="fortress" class="py-24 px-6 max-w-6xl mx-auto reveal">
-    <div class="flex items-center gap-4 mb-3">
-      <div class="w-8 h-px" style="background:var(--acid)"></div>
-      <span class="font-mono text-xs text-acid uppercase tracking-widest">Module 01</span>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section class="section">
+  <h2 class="text-3xl mb-10">What I Actually Do</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="card">
+      <h3 class="mb-3">Anti-Sybil Strategy</h3>
+      <p class="text-gray-400 text-sm">
+        I design campaign structures that reduce bot participation and reward real users.
+      </p>
     </div>
-    <h2 class="font-display font-black mb-4" style="font-size:clamp(2rem,5vw,3.5rem);">
-      The Digital <span class="text-acid">Fortress</span>
-    </h2>
-    <p class="font-mono text-dim max-w-2xl mb-12 leading-relaxed">
-      Security is not a feature. It's infrastructure. I build the defense layer before<br class="hidden md:block" />
-      the bots and bad actors have a chance to corrode your protocol's trust.
-    </p>
 
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <!-- Card 1 -->
-      <div class="panel-card p-8 reveal">
-        <div class="relative mb-8">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" stroke="#1a1a2e" stroke-width="2"/>
-            <circle cx="24" cy="24" r="22" stroke="#00ff88" stroke-width="1" opacity="0.3"
-                    class="pulse-ring" style="transform-origin:24px 24px"/>
-            <path d="M24 8 L38 14 V26 C38 34 31 40 24 43 C17 40 10 34 10 26 V14 Z"
-                  stroke="#00ff88" stroke-width="1.5" fill="rgba(0,255,136,0.05)"/>
-            <path d="M18 24 L22 28 L30 20" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="tag acid mb-4">COMMUNITY GUARD</div>
-        <h3 class="font-display font-bold text-xl mb-4">24/7 Security Protocol</h3>
-        <p class="font-mono text-dim text-sm leading-relaxed mb-6">
-          Round-the-clock moderation across Telegram and Discord. I configure Combot, Rose, MEE6, and Colossus with precision — not default settings. FUD doesn't survive 12 hours in channels I own.
-        </p>
-        <div class="space-y-2">
-          <div class="flex gap-2 flex-wrap">
-            <span class="tag">Bot Configuration</span>
-            <span class="tag">FUD Neutralization</span>
-            <span class="tag acid">Anti-Raid</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="panel-card p-8 reveal">
-        <div class="relative mb-8">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" stroke="#1a1a2e" stroke-width="2"/>
-            <path d="M12 24 C12 17.4 17.4 12 24 12 C30.6 12 36 17.4 36 24 C36 30.6 30.6 36 24 36" 
-                  stroke="#ff3a3a" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <circle cx="24" cy="12" r="3" fill="#ff3a3a"/>
-            <circle cx="36" cy="24" r="3" fill="#ff3a3a"/>
-            <circle cx="24" cy="36" r="3" fill="#ff3a3a" opacity="0.4"/>
-            <path d="M20 28 L28 20 M28 20 H23 M28 20 V25" stroke="#ff3a3a" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="tag red mb-4">ANTI-SYBIL DEFENSE</div>
-        <h3 class="font-display font-bold text-xl mb-4">Sybil-Resistance Audits</h3>
-        <p class="font-mono text-dim text-sm leading-relaxed mb-6">
-          I know how to spot a bot farm because I spent years building on-chain positions. I audit wallet clusters, flag coordinated behavior, and clean participant lists before your snapshot. Your token goes to real humans.
-        </p>
-        <div class="space-y-2">
-          <div class="flex gap-2 flex-wrap">
-            <span class="tag red">Bot Detection</span>
-            <span class="tag">Wallet Clustering</span>
-            <span class="tag">Snapshot Audit</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="panel-card p-8 reveal">
-        <div class="relative mb-8">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" stroke="#1a1a2e" stroke-width="2"/>
-            <rect x="14" y="30" width="5" height="8" fill="#ffb800" opacity="0.8" rx="1"/>
-            <rect x="21.5" y="22" width="5" height="16" fill="#ffb800" rx="1"/>
-            <rect x="29" y="14" width="5" height="24" fill="#00ff88" rx="1"/>
-            <path d="M12 14 L22 22 L30 18 L38 10" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="tag warn mb-4">ON-CHAIN INTELLIGENCE</div>
-        <h3 class="font-display font-bold text-xl mb-4">Arkham-Level Research</h3>
-        <p class="font-mono text-dim text-sm leading-relaxed mb-6">
-          Whale movement monitoring. User quality audits. Pre-TGE on-chain analysis. I translate blockchain data into actionable strategy — not vanity metrics that make stakeholders feel good for one week.
-        </p>
-        <div class="space-y-2">
-          <div class="flex gap-2 flex-wrap">
-            <span class="tag warn">Arkham / Nansen</span>
-            <span class="tag">Whale Tracking</span>
-            <span class="tag">User Quality</span>
-          </div>
-        </div>
-      </div>
-
+    <div class="card">
+      <h3 class="mb-3">Campaign Design</h3>
+      <p class="text-gray-400 text-sm">
+        Galxe, Zealy, Gleam — task design focused on effort, not clicks.
+      </p>
     </div>
-  </section>
 
-  <!-- ============================================================ GROWTH ENGINE -->
-  <section id="engine" class="py-24 px-6 max-w-6xl mx-auto reveal">
-    <div class="flex items-center gap-4 mb-3">
-      <div class="w-8 h-px" style="background:var(--acid)"></div>
-      <span class="font-mono text-xs text-acid uppercase tracking-widest">Module 02</span>
+    <div class="card">
+      <h3 class="mb-3">User Behavior Analysis</h3>
+      <p class="text-gray-400 text-sm">
+        I identify patterns in how users farm, exploit, and drop off.
+      </p>
     </div>
-    <h2 class="font-display font-black mb-4" style="font-size:clamp(2rem,5vw,3.5rem);">
-      The Engagement <span class="text-acid">Engine</span>
-    </h2>
-    <p class="font-mono text-dim max-w-2xl mb-16 leading-relaxed">
-      Growth without retention is a leak. I design Quest-to-Protocol flows that convert<br class="hidden md:block"/>
-      one-time airdrop hunters into holders with actual skin in the game.
-    </p>
 
-    <div class="grid md:grid-cols-2 gap-8 items-start">
+  </div>
+</section>
 
-      <!-- Flow diagram -->
-      <div class="panel-card p-8 reveal">
-        <div class="font-mono text-xs text-dim mb-8 uppercase tracking-widest">// QUEST-TO-PROTOCOL FLOW</div>
-        <div class="space-y-0">
-          <div class="flex items-start gap-4">
-            <div class="flex flex-col items-center">
-              <div class="w-10 h-10 rounded-sm flex items-center justify-center font-mono text-xs font-bold" 
-                   style="background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.3); color:var(--acid)">01</div>
-              <div class="w-px flex-1 my-2" style="background:var(--border); min-height:40px"></div>
-            </div>
-            <div class="pb-8">
-              <div class="font-display font-bold text-base mb-1">Awareness Quest</div>
-              <div class="font-mono text-dim text-sm">Galxe / Zealy campaign with task design optimized for genuine attention — not click farms.</div>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="flex flex-col items-center">
-              <div class="w-10 h-10 rounded-sm flex items-center justify-center font-mono text-xs font-bold"
-                   style="background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.3); color:var(--acid)">02</div>
-              <div class="w-px flex-1 my-2" style="background:var(--border); min-height:40px"></div>
-            </div>
-            <div class="pb-8">
-              <div class="font-display font-bold text-base mb-1">Sybil Filter</div>
-              <div class="font-mono text-dim text-sm">Participant list audited against on-chain history. Bot addresses flagged and removed before rewards.</div>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="flex flex-col items-center">
-              <div class="w-10 h-10 rounded-sm flex items-center justify-center font-mono text-xs font-bold"
-                   style="background:rgba(255,184,0,0.1); border:1px solid rgba(255,184,0,0.3); color:var(--warn)">03</div>
-              <div class="w-px flex-1 my-2" style="background:var(--border); min-height:40px"></div>
-            </div>
-            <div class="pb-8">
-              <div class="font-display font-bold text-base mb-1">Community Lock-In</div>
-              <div class="font-mono text-dim text-sm">Tiered roles, AMAs, and moderation that builds identity in the community — not just wallet activity.</div>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="flex flex-col items-center">
-              <div class="w-10 h-10 rounded-sm flex items-center justify-center font-mono text-xs font-bold"
-                   style="background:rgba(0,255,136,0.15); border:1px solid var(--acid); color:var(--acid)">04</div>
-            </div>
-            <div>
-              <div class="font-display font-bold text-base mb-1 text-acid">TGE Execution</div>
-              <div class="font-mono text-dim text-sm">Launch-day crisis management. FUD containment. Coordinated announcement strategy across every channel.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- CASE STUDIES -->
+<section id="case" class="section">
+  <h2 class="text-3xl mb-10">Case Studies (Real Experience)</h2>
 
-      <!-- Skills breakdown -->
-      <div class="space-y-4 reveal">
-        <div class="panel-card p-6">
-          <div class="flex items-center justify-between mb-4">
-            <span class="font-display font-bold">Campaign Architecture</span>
-            <span class="font-mono text-acid text-sm">96%</span>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" style="width:96%"></div></div>
-          <p class="font-mono text-dim text-xs mt-3">Galxe, Zealy, and Layer3 quest design from zero to snapshot.</p>
-        </div>
+  <div class="space-y-6">
 
-        <div class="panel-card p-6">
-          <div class="flex items-center justify-between mb-4">
-            <span class="font-display font-bold">Community Guard (24/7)</span>
-            <span class="font-mono text-acid text-sm">99%</span>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div>
-          <p class="font-mono text-dim text-xs mt-3">Telegram + Discord moderation. Bot config. Night shift covered.</p>
-        </div>
-
-        <div class="panel-card p-6">
-          <div class="flex items-center justify-between mb-4">
-            <span class="font-display font-bold">Anti-Sybil Defense</span>
-            <span class="font-mono text-danger text-sm">Expert</span>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" style="width:92%; background:linear-gradient(90deg,#ff3a3a,#ff8c00)"></div></div>
-          <p class="font-mono text-dim text-xs mt-3">On-chain pattern recognition. Wallet cluster analysis. 6 years of behavioral data.</p>
-        </div>
-
-        <div class="panel-card p-6">
-          <div class="flex items-center justify-between mb-4">
-            <span class="font-display font-bold">On-Chain Intelligence</span>
-            <span class="font-mono text-warn text-sm">94%</span>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" style="width:94%; background:linear-gradient(90deg,#ffb800,#ff8c00)"></div></div>
-          <p class="font-mono text-dim text-xs mt-3">Arkham, Nansen, Dune. Translating chain data into project strategy.</p>
-        </div>
-      </div>
+    <div class="card">
+      <h3 class="mb-2">Case 01 — Airdrop Farming Pattern Analysis</h3>
+      <p class="text-gray-400 text-sm">
+        After participating in dozens of campaigns, I identified repeated patterns:
+        low-effort tasks attract multi-wallet farmers, while effort-based actions reduce fake participation.
+        This insight now drives how I structure campaigns.
+      </p>
     </div>
-  </section>
 
-  <!-- ============================================================ PROOF OF WORK -->
-  <section id="proof" class="py-24 px-6 max-w-6xl mx-auto reveal">
-    <div class="flex items-center gap-4 mb-3">
-      <div class="w-8 h-px" style="background:var(--acid)"></div>
-      <span class="font-mono text-xs text-acid uppercase tracking-widest">Module 03</span>
+    <div class="card">
+      <h3 class="mb-2">Case 02 — Campaign Exploit Identification</h3>
+      <p class="text-gray-400 text-sm">
+        Observed how users bypass verification systems using multiple wallets, VPN rotation, and scripted actions.
+        Built a checklist to detect weak campaign structures before launch.
+      </p>
     </div>
-    <h2 class="font-display font-black mb-4" style="font-size:clamp(2rem,5vw,3.5rem);">
-      Proof of <span class="text-acid">Work</span>
-    </h2>
-    <p class="font-mono text-dim max-w-xl mb-16 leading-relaxed">
-      Not a portfolio of screenshots. A timeline of on-chain survival.
-    </p>
 
-    <div class="space-y-4">
-      <div class="panel-card p-6 flex items-start gap-6 reveal">
-        <div class="timeline-dot mt-1"></div>
-        <div class="flex-1">
-          <div class="flex flex-wrap items-center gap-3 mb-2">
-            <span class="font-display font-bold text-base">Layer 2 Protocol — TGE Security Lead</span>
-            <span class="tag acid">2024</span>
-          </div>
-          <p class="font-mono text-dim text-sm leading-relaxed">Managed 47K+ Telegram community pre-TGE. Configured anti-bot layers. Coordinated launch day communications across 3 time zones with zero FUD incidents reaching uncontained status.</p>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <span class="tag">Telegram</span><span class="tag">Anti-Sybil</span><span class="tag acid">TGE</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel-card p-6 flex items-start gap-6 reveal">
-        <div class="timeline-dot mt-1" style="background:var(--warn); box-shadow: 0 0 12px var(--warn)"></div>
-        <div class="flex-1">
-          <div class="flex flex-wrap items-center gap-3 mb-2">
-            <span class="font-display font-bold text-base">DeFi Protocol — Galxe Quest Architect</span>
-            <span class="tag warn">2023</span>
-          </div>
-          <p class="font-mono text-dim text-sm leading-relaxed">Designed multi-stage Galxe campaign with sybil-resistant verification. 12K unique verified wallets. Audited final list to remove 2,300+ flagged addresses before airdrop snapshot.</p>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <span class="tag">Galxe</span><span class="tag red">Sybil Audit</span><span class="tag">Quest Design</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel-card p-6 flex items-start gap-6 reveal">
-        <div class="timeline-dot mt-1" style="background:var(--danger); box-shadow: 0 0 12px var(--danger)"></div>
-        <div class="flex-1">
-          <div class="flex flex-wrap items-center gap-3 mb-2">
-            <span class="font-display font-bold text-base">NFT Project — Community Rescue</span>
-            <span class="tag red">2022</span>
-          </div>
-          <p class="font-mono text-dim text-sm leading-relaxed">Brought in post-mint when community was in active FUD spiral. Rebuilt moderation framework, renegotiated team visibility, and halted Discord exit bleed within 72 hours.</p>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <span class="tag">Discord</span><span class="tag">FUD Control</span><span class="tag warn">Crisis Mgmt</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel-card p-6 flex items-start gap-6 reveal">
-        <div class="timeline-dot mt-1"></div>
-        <div class="flex-1">
-          <div class="flex flex-wrap items-center gap-3 mb-2">
-            <span class="font-display font-bold text-base">30+ Airdrop Campaigns — Active Participant & Analyst</span>
-            <span class="tag">2020–2023</span>
-          </div>
-          <p class="font-mono text-dim text-sm leading-relaxed">Completed 100+ airdrop campaigns as a participant across every major meta — DeFi, NFT, L2. Built the behavioral understanding that now informs my sybil-resistance work. You cannot defend what you haven't studied from both sides.</p>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <span class="tag acid">Field Research</span><span class="tag">On-Chain</span><span class="tag">All Metas</span>
-          </div>
-        </div>
-      </div>
+    <div class="card">
+      <h3 class="mb-2">Case 03 — Retention vs Farming Behavior</h3>
+      <p class="text-gray-400 text-sm">
+        Noticed that most users disappear after rewards.
+        Strong communities require identity, interaction, and role-based engagement — not just incentives.
+      </p>
     </div>
-  </section>
 
-  <!-- ============================================================ MANIFESTO BLOCK -->
-  <section class="py-24 px-6 max-w-6xl mx-auto reveal">
-    <div class="panel-card p-12 relative overflow-hidden scanlines">
-      <div class="absolute top-0 left-0 right-0 bottom-0 opacity-5"
-           style="background: radial-gradient(circle at 30% 50%, #00ff88, transparent 60%)"></div>
-      <div class="relative z-10">
-        <div class="font-mono text-xs text-dim mb-6 uppercase tracking-widest">// OPERATING PHILOSOPHY</div>
-        <blockquote class="font-display font-black leading-tight mb-8"
-                    style="font-size:clamp(1.6rem,3.5vw,2.8rem);">
-          "Most community managers respond to threats.<br />
-          <span class="text-acid">I build systems that make threats irrelevant."</span>
-        </blockquote>
-        <p class="font-mono text-dim max-w-2xl leading-relaxed">
-          Six years of on-chain survival means I've been on both sides of the airdrop table. I've seen how protocols collapse from within — not from external pressure, but from low-quality communities they allowed to form. That's the work. Build the right crowd before the market decides you didn't.
-        </p>
-      </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+  <h2 class="text-3xl mb-10">Services</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="card">
+      <h3 class="mb-3">Campaign Review</h3>
+      <p class="text-gray-400 text-sm mb-4">
+        I audit your campaign and show where bots will exploit it.
+      </p>
     </div>
-  </section>
 
-  <!-- ============================================================ CONTACT / DEPLOY -->
-  <section id="contact" class="py-24 px-6 max-w-6xl mx-auto reveal">
-    <div class="flex items-center gap-4 mb-3">
-      <div class="w-8 h-px" style="background:var(--acid)"></div>
-      <span class="font-mono text-xs text-acid uppercase tracking-widest">Deploy</span>
+    <div class="card">
+      <h3 class="mb-3">Anti-Sybil Design</h3>
+      <p class="text-gray-400 text-sm mb-4">
+        I restructure tasks to reduce fake users and increase quality participation.
+      </p>
     </div>
-    <h2 class="font-display font-black mb-4" style="font-size:clamp(2rem,5vw,3.5rem);">
-      Ready to <span class="text-acid">Execute?</span>
-    </h2>
-    <p class="font-mono text-dim max-w-xl mb-12 leading-relaxed">
-      No discovery calls. No decks. Tell me the threat surface and timeline.<br />We either fit or we don't.
-    </p>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="panel-card p-8">
-        <div class="font-mono text-xs text-dim mb-6 uppercase tracking-widest">// CONTACT CHANNELS</div>
-        <div class="space-y-4">
-          <a href="https://t.me/Fahadazad62" target="_blank"
-             class="flex items-center gap-4 p-4 rounded-sm hover:bg-white/5 transition-colors group"
-             style="border:1px solid var(--border)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-acid">
-              <path d="M21 3L3 9.5l6.5 2.5M21 3L14.5 21l-5-7M21 3L10 14.5"/>
-            </svg>
-            <div>
-              <div class="font-mono text-sm group-hover:text-acid transition-colors">Telegram</div>
-              <div class="font-mono text-xs text-dim">@Fahadazad62</div>
-            </div>
-          </a>
-
-          <a href="https://twitter.com/fahadhasan62" target="_blank"
-             class="flex items-center gap-4 p-4 rounded-sm hover:bg-white/5 transition-colors group"
-             style="border:1px solid var(--border)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-acid">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-            <div>
-              <div class="font-mono text-sm group-hover:text-acid transition-colors">Twitter / X</div>
-              <div class="font-mono text-xs text-dim">@fahadhasan62</div>
-            </div>
-          </a>
-
-          <a href="fahad.web3growth@gmail.com"
-             class="flex items-center gap-4 p-4 rounded-sm hover:bg-white/5 transition-colors group"
-             style="border:1px solid var(--border)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-acid">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M2 7l10 7 10-7"/>
-            </svg>
-            <div>
-              <div class="font-mono text-sm group-hover:text-acid transition-colors">Email</div>
-              <div class="font-mono text-xs text-dim">fahad.web3growth@gmail.com</div>
-            </div>
-          </a>
-
-          <a href="https://discord.com/users/603235107540566046" target="_blank"
-             class="flex items-center gap-4 p-4 rounded-sm hover:bg-white/5 transition-colors group"
-             style="border:1px solid var(--border)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-acid">
-              <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/>
-            </svg>
-            <div>
-              <div class="font-mono text-sm group-hover:text-acid transition-colors">Discord</div>
-              <div class="font-mono text-xs text-dim">fahadhasan62</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right: terminal -->
-      <div class="panel-card p-8 font-mono text-sm" style="background:#050508;">
-        <div class="flex items-center gap-2 mb-6">
-          <div class="w-3 h-3 rounded-full" style="background:#ff5f57"></div>
-          <div class="w-3 h-3 rounded-full" style="background:#febc2e"></div>
-          <div class="w-3 h-3 rounded-full" style="background:#28c840"></div>
-          <span class="ml-4 text-xs text-dim">terminal — fahad@fortress</span>
-        </div>
-        <div class="space-y-2 text-sm leading-relaxed">
-          <div><span class="text-acid">$</span> <span class="text-dim">whoami</span></div>
-          <div class="text-white pl-4">Md Fahad Bin Firdous</div>
-          <div class="mt-3"><span class="text-acid">$</span> <span class="text-dim">cat experience.log</span></div>
-          <div class="text-white pl-4">6 years · 100+ campaigns · 0% rug tolerance</div>
-          <div class="mt-3"><span class="text-acid">$</span> <span class="text-dim">cat specialization.txt</span></div>
-          <div class="text-white pl-4">Anti-Sybil · TGE Execution · On-Chain Intel</div>
-          <div class="mt-3"><span class="text-acid">$</span> <span class="text-dim">cat status</span></div>
-          <div class="text-acid pl-4">OPEN FOR PROTOCOL WORK</div>
-          <div class="mt-3"><span class="text-acid">$</span> <span class="text-dim">./deploy --contact<span class="blink">_</span></span></div>
-        </div>
-      </div>
+    <div class="card">
+      <h3 class="mb-3">Growth Strategy</h3>
+      <p class="text-gray-400 text-sm mb-4">
+        Full system from user acquisition to retention.
+      </p>
     </div>
-  </section>
 
-  <!-- ============================================================ FOOTER -->
-  <footer class="border-t py-8 px-6" style="border-color:var(--border)">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="font-mono text-xs text-dim">
-        © 2026 Md Fahad Bin Firdous — Built for the trenches.
-      </div>
-      <div class="font-mono text-xs text-dim">
-        <span class="text-acid">fahadbinfirdous.github.io</span>
-      </div>
-    </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- ============================================================ SCRIPTS -->
-  <style>
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-  </style>
+<!-- FUNNEL -->
+<section class="section">
+  <h2 class="text-3xl mb-10">How We Work</h2>
 
-  <script>
-    // === Cursor ===
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
-      cursorRing.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
-    });
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform += ' scale(1.8)';
-        cursorRing.style.opacity = '0.9';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorRing.style.opacity = '0.5';
-      });
-    });
+  <div class="space-y-4 text-gray-400">
 
-    // === Scroll reveal ===
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // Animate progress bars inside
-          entry.target.querySelectorAll('.progress-fill').forEach(bar => {
-            bar.style.transform = 'scaleX(1)';
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    <p>1. You send your campaign or idea</p>
+    <p>2. I identify weaknesses and risks</p>
+    <p>3. I redesign the structure</p>
+    <p>4. You launch with better user quality</p>
 
-    // Trigger progress bars in hero/bento on load
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.querySelectorAll('.progress-fill').forEach(bar => {
-          bar.style.transform = 'scaleX(1)';
-        });
-      }, 600);
-    });
-  </script>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2 class="text-3xl mb-6">Contact</h2>
+
+  <div class="space-y-3 text-gray-400">
+    <p>Telegram: @Fahadazad62</p>
+    <p>Twitter: @fahadhasan62</p>
+    <p>Email: fahad.web3growth@gmail.com</p>
+  </div>
+</section>
+
+<footer class="section text-center text-gray-500 text-sm">
+  © 2026 Md Fahad Bin Firdous
+</footer>
+
 </body>
 </html>
