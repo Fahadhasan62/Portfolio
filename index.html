@@ -1,116 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Md Fahad Bin Firdous — Web3 Growth Strategist</title>
-
-<meta name="description" content="Web3 Growth & Anti-Sybil Strategist. I help crypto projects attract real users instead of airdrop farmers.">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Md Fahad Bin Firdous — Web3 Growth & Anti-Sybil Strategist</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body {
-  background: #0a0a0a;
-  color: #e5e7eb;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
-.accent { color: #00ff88; }
-.container { max-width: 1100px; margin: auto; padding: 80px 20px; }
-.card { border: 1px solid #1f2937; padding: 24px; border-radius: 8px; }
-.btn {
-  border: 1px solid #00ff88;
-  padding: 10px 18px;
-  font-size: 13px;
-  text-transform: uppercase;
-  transition: 0.2s;
-}
-.btn:hover { background: rgba(0,255,136,0.1); }
+  :root {
+    --bg: #0b0b0b;
+    --ink: #ededed;
+    --mute: #888;
+    --line: #1e1e1e;
+    --accent: #d4ff3a;
+  }
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: -0.01em; }
+  .serif { font-family: 'Fraunces', serif; font-weight: 400; letter-spacing: -0.03em; }
+  .mute { color: var(--mute); }
+  .line { border-color: var(--line); }
+  .accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); }
+  .accent-underline { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+  .num { font-family: 'Fraunces', serif; font-feature-settings: "tnum"; }
+  .grain::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: overlay;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid var(--line);
+    font-size: 13px;
+    transition: all 0.2s ease;
+    background: transparent;
+  }
+  .btn:hover { border-color: var(--ink); }
+  .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .btn-primary:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .arrow { transition: transform 0.2s; }
+  .btn:hover .arrow { transform: translateX(3px); }
+  ::selection { background: var(--accent); color: #000; }
 </style>
 </head>
+<body class="grain antialiased overflow-x-hidden">
 
-<body>
+<!-- NAV -->
+<nav class="relative z-20 px-6 md:px-12 py-6 flex items-center justify-between border-b line">
+  <div class="flex items-center gap-3">
+    <span class="dot"></span>
+    <span class="text-xs tracking-[0.2em] uppercase mute">Available · Q1</span>
+  </div>
+  <div class="hidden md:flex items-center gap-8 text-xs tracking-[0.15em] uppercase mute">
+    <a href="#work" class="hover:text-white transition">Practice</a>
+    <a href="#insights" class="hover:text-white transition">Insights</a>
+    <a href="#process" class="hover:text-white transition">Process</a>
+    <a href="#contact" class="hover:text-white transition">Contact</a>
+  </div>
+  <div class="text-xs tracking-[0.15em] uppercase mute">
+    <span class="hidden md:inline">Index —</span> 001
+  </div>
+</nav>
 
 <!-- HERO -->
-<section class="container flex flex-col md:flex-row items-center gap-12">
+<section class="relative px-6 md:px-12 pt-12 md:pt-20 pb-20 md:pb-32">
+  <div class="grid grid-cols-12 gap-6 md:gap-10">
 
-  <!-- IMAGE -->
-  <div class="w-40 md:w-56">
-    <img src="profile.png" alt="Fahad" class="rounded-lg border border-gray-800">
-  </div>
+    <!-- LEFT: TEXT -->
+    <div class="col-span-12 lg:col-span-7 order-2 lg:order-1 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center gap-4 mb-8 md:mb-12">
+          <div class="h-px w-12 bg-white/30"></div>
+          <span class="text-xs tracking-[0.25em] uppercase mute">Portfolio / Web3 Strategy</span>
+        </div>
 
-  <!-- TEXT -->
-  <div>
-    <p class="accent text-sm mb-3">WEB3 GROWTH · ANTI-SYBIL</p>
+        <h1 class="serif text-[44px] sm:text-[64px] md:text-[88px] lg:text-[108px] leading-[0.95] tracking-tight">
+          Md Fahad<br/>
+          Bin <em class="italic" style="color: var(--accent);">Firdous.</em>
+        </h1>
 
-    <h1 class="text-3xl md:text-5xl font-semibold mb-4">
-      Md Fahad Bin Firdous
-    </h1>
+        <div class="mt-10 md:mt-14 grid grid-cols-12 gap-6">
+          <div class="col-span-12 md:col-span-10">
+            <p class="serif text-2xl md:text-3xl leading-snug tracking-tight">
+              I help Web3 projects attract <span class="accent-underline">real users</span> instead of airdrop farmers.
+            </p>
+          </div>
+          <div class="col-span-12 md:col-span-10 md:pt-4">
+            <p class="text-sm md:text-base mute leading-relaxed max-w-xl">
+              Six years inside the airdrop economy — watching testnets launch, farmers adapt, and teams reward the wrong users. I work with projects that want to fix that before the snapshot, not after.
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <p class="text-gray-400 max-w-xl mb-6">
-      I help Web3 projects design campaigns that attract real users, filter out bot behavior, and improve long-term retention.
-    </p>
-
-    <div class="flex gap-4 flex-wrap">
-
-      <a href="https://t.me/Fahadazad62" target="_blank" class="btn">Telegram</a>
-
-      <a href="https://twitter.com/fahadhasan62" target="_blank" class="btn">Twitter</a>
-
-      <a href="mailto:fahad.web3growth@gmail.com" class="btn">Email</a>
-
+      <!-- BUTTONS -->
+      <div class="mt-12 md:mt-16 flex flex-wrap gap-3">
+        <a href="https://t.me/" target="_blank" class="btn btn-primary">
+          Telegram <span class="arrow">↗</span>
+        </a>
+        <a href="https://twitter.com/" target="_blank" class="btn text-white">
+          Twitter <span class="arrow mute">↗</span>
+        </a>
+        <a href="mailto:hello@example.com" class="btn text-white">
+          Email <span class="arrow mute">↗</span>
+        </a>
+      </div>
     </div>
+
+    <!-- RIGHT: IMAGE -->
+    <div class="col-span-12 lg:col-span-5 order-1 lg:order-2 relative">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 text-[10px] tracking-[0.3em] uppercase mute z-10">
+          F.B.F — 2025
+        </div>
+        <div class="absolute -bottom-4 -right-4 text-[10px] tracking-[0.3em] uppercase mute z-10 text-right">
+          Strategist<br/>Anti-Sybil
+        </div>
+        <div class="aspect-[4/5] w-full overflow-hidden bg-neutral-900 border line">
+          <img src="profile.png" alt="Md Fahad Bin Firdous" class="w-full h-full object-cover grayscale contrast-110" />
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <!-- TICKER FOOTNOTE -->
+  <div class="mt-20 md:mt-32 pt-6 border-t line grid grid-cols-12 gap-6 text-xs tracking-[0.15em] uppercase">
+    <div class="col-span-6 md:col-span-3 mute">Based · Remote</div>
+    <div class="col-span-6 md:col-span-3 mute">Focus · Sybil Defense</div>
+    <div class="hidden md:block md:col-span-3 mute">Sectors · L2 · Testnet · DeFi</div>
+    <div class="hidden md:block md:col-span-3 mute text-right">Scroll ↓</div>
+  </div>
 </section>
 
-<!-- VALUE -->
-<section class="container">
-
-  <h2 class="text-2xl mb-10">What I Do</h2>
-
-  <div class="grid md:grid-cols-3 gap-6">
-
-    <div class="card">
-      <h3 class="mb-2">Anti-Sybil Strategy</h3>
-      <p class="text-gray-400 text-sm">
-        Campaign structures designed to reduce bot participation and reward real users.
-      </p>
+<!-- WHAT I DO -->
+<section id="work" class="px-6 md:px-12 py-24 md:py-32 border-t line">
+  <div class="grid grid-cols-12 gap-6 md:gap-10">
+    <div class="col-span-12 md:col-span-3">
+      <div class="sticky top-10">
+        <span class="text-xs tracking-[0.25em] uppercase mute">§ 01</span>
+        <h2 class="serif text-4xl md:text-5xl mt-4 leading-none">Practice</h2>
+      </div>
     </div>
 
-    <div class="card">
-      <h3 class="mb-2">Campaign Design</h3>
-      <p class="text-gray-400 text-sm">
-        Galxe, Zealy, Gleam — task flows focused on effort and engagement, not farming.
-      </p>
-    </div>
+    <div class="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-8 lg:col-start-5">
+      <div class="divide-y line border-t line">
 
-    <div class="card">
-      <h3 class="mb-2">User Behavior Insight</h3>
-      <p class="text-gray-400 text-sm">
-        6+ years understanding how users exploit systems and how to prevent it.
-      </p>
-    </div>
+        <div class="py-8 md:py-10 grid grid-cols-12 gap-6 items-start group">
+          <div class="col-span-12 md:col-span-1 num text-3xl mute">01</div>
+          <div class="col-span-12 md:col-span-5">
+            <h3 class="serif text-2xl md:text-3xl">Anti-Sybil Strategy</h3>
+          </div>
+          <div class="col-span-12 md:col-span-6">
+            <p class="mute leading-relaxed">Detection frameworks that separate organic users from coordinated farms — before rewards go out, not after the damage is done.</p>
+          </div>
+        </div>
 
+        <div class="py-8 md:py-10 grid grid-cols-12 gap-6 items-start group">
+          <div class="col-span-12 md:col-span-1 num text-3xl mute">02</div>
+          <div class="col-span-12 md:col-span-5">
+            <h3 class="serif text-2xl md:text-3xl">Campaign Design</h3>
+          </div>
+          <div class="col-span-12 md:col-span-6">
+            <p class="mute leading-relaxed">Incentive structures that reward genuine engagement and make farming economically unattractive instead of trivial.</p>
+          </div>
+        </div>
+
+        <div class="py-8 md:py-10 grid grid-cols-12 gap-6 items-start group">
+          <div class="col-span-12 md:col-span-1 num text-3xl mute">03</div>
+          <div class="col-span-12 md:col-span-5">
+            <h3 class="serif text-2xl md:text-3xl">User Behavior Insight</h3>
+          </div>
+          <div class="col-span-12 md:col-span-6">
+            <p class="mute leading-relaxed">Pattern recognition from the farmer's side of the table. I've watched, traced, and understood exactly how exploits scale.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-
 </section>
 
-<!-- PROOF -->
-<section class="container">
-
-  <h2 class="text-2xl mb-10">Proof of Experience</h2>
-
-  <div class="grid md:grid-cols-3 gap-6">
-
-    <div class="card">
-      <h3 class="accent text-xl">6+</h3>
-      <p class="text-gray-400 text-sm">Years in crypto ecosystem</p>
+<!-- EXPERIENCE SIGNAL -->
+<section class="px-6 md:px-12 py-24 md:py-32 border-t line">
+  <div class="grid grid-cols-12 gap-6 md:gap-10">
+    <div class="col-span-12 md:col-span-5">
+      <span class="text-xs tracking-[0.25em] uppercase mute">§ 02 — Signal</span>
+      <h2 class="serif text-4xl md:text-6xl mt-4 leading-[1.05]">
+        No résumé.<br/>
+        <em class="italic mute">Just time spent</em><br/>
+        in the system.
+      </h2>
     </div>
 
-    <div class="card">
-      <h3 class="accent text-xl">100+</h3>
+    <div class="col-span-12 md:col-span-6 md:col-start-7 flex flex-col justify-end">
+      <div class="space-y-10">
+
+        <div class="flex items-baseline gap-8 pb-8 border-b line">
+          <div class="num text-6xl md:text-7xl" style="color: var(--accent);">6+</div>
+          <div>
+            <div class="text-sm tracking-[0.15em] uppercase">Years inside crypto</div>
+            <p class="mute text-sm mt-1">Through multiple cycles — from early Cosmos airdrops to modern L2 incentive wars.</p>
+          </div>
+        </div>
+
+        <div class="flex items-baseline gap-8 pb-8 border-b line">
+          <div class="num text-6xl md:text-7xl" style="color: var(--accent);">100+</div>
+          <div>
+            <div class="text-sm tracking-[0.15em] uppercase">Campaigns analyzed</div>
+            <p class="mute text-sm mt-1">Testnets, quests, points systems, retroactive drops — documented and dissected.</p>
+          </div>
+        </div>
+
+        <div class="flex items-baseline gap-8">
+          <div class="num text-6xl md:text-7xl" style="color: var(--accent);">∞</div>
+          <div>
+            <div class="text-sm tracking-[0.15em] uppercase">Farming patterns studied</div>
+            <p class="mute text-sm mt-1">Wallet clusters, transaction shaping, behavioral mimicry, CEX-funded rotations.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights" class="px-6 md:px-12 py-24 md:py-32 border-t line">
+  <div class="grid grid-cols-12 gap-6 md:gap-10 mb-16">
+    <div class="col-span-12 md:col-span-6">
+      <span class="text-xs tracking-[0.25em] uppercase mute">§ 03 — Field Notes</span>
+      <h2 class="serif text-4xl md:text-6xl mt-4 leading-none">Insights.</h2>
+    </div>
+    <div class="col-span-12 md:col-span-5 md:col-start-8 self-end">
+      <p class="mute text-sm">Observations from the ground, not case studies dressed up as expertise.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-6 md:gap-10">
+
+    <article class="col-span-12 md:col-span-6 lg:col-span-4 border-t line pt-6">
+      <div class="flex items-center justify-between text-xs tracking-[0.2em] uppercase mute mb-8">
+        <span>Note 01</span>
+        <span>Behavior</span>
+      </div>
+      <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">The farmer always optimizes for the minimum viable action.</h3>
+      <p class="mute text-sm leading-relaxed">Every quest, every on-chain interaction, every Discord task — reduced to the lowest-cost repeatable unit. If your campaign can be scripted, it already is.</p>
+    </article>
+
+    <article class="col-span-12 md:col-span-6 lg:col-span-4 border-t line pt-6 lg:mt-12">
+      <div class="flex items-center justify-between text-xs tracking-[0.2em] uppercase mute mb-8">
+        <span>Note 02</span>
+        <span>Exploit</span>
+      </div>
+      <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">Points systems leak more than token drops.</h3>
+      <p class="mute text-sm leading-relaxed">Opaque points create asymmetric information. Teams think they've hidden the formula; farmers reverse-engineer it within 72 hours and own the leaderboard.</p>
+    </article>
+
+    <article class="col-span-12 md:col-span-6 lg:col-span-4 border-t line pt-6 lg:mt-24">
+      <div class="flex items-center justify-between text-xs tracking-[0.2em] uppercase mute mb-8">
+        <span>Note 03</span>
+        <span>Retention</span>
+      </div>
+      <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">Retention fails because the product was never the reward.</h3>
+      <p class="mute text-sm leading-relaxed">When the incentive ends, so does the behavior. Real retention requires reasons to return that exist independently of the drop.</p>
+    </article>
+
+    <article class="col-span-12 md:col-span-6 lg:col-span-4 border-t line pt-6">
+      <div class="flex items-center justify-between text-xs tracking-[0.2em] uppercase mute mb-8">
+        <span>Note 04</span>
+        <span>Detection</span>
+      </div>
+      <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">Wallet clustering alone catches the lazy ones.</h3>
+      <p class="mute text-sm leading-relaxed">Funding graphs, timing analysis, and behavioral entropy matter more than the obvious tells. Professional farms don't share gas wallets anymore.</p>
+    </article>
+
+    <article class="col-span-12 md:col-span-6 lg:col-span-4 border-t line pt-6 lg:mt-12">
+      <div class="flex items-center justify-between text-xs tracking-[0.2em] uppercase mute mb-8">
+        <span>Note 05</span>
+        <span>Design</span>
+      </div>
+      <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">Every anti-Sybil rule creates a new Sybil strategy.</h3>
+      <p class="mute text-sm leading-relaxed">Filters aren't walls — they're shape-changers. The question isn't whether farmers adapt, but whether the adapted behavior still benefits the protocol.</p>
+    </article>
+
+    <article class="col-span-12 md:col-span-6 lg:col-span-4 border-t line pt-6 lg:mt-24">
+      <div class="flex items-center justify-between text-xs tracking-[0.2em] uppercase mute mb-8">
+        <span>Note 06</span>
+        <span>Post-TGE</span>
+      </div>
+      <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">The snapshot is diagnostic, not corrective.</h3>
+      <p class="mute text-sm leading-relaxed">By the time eligibility is being debated on Twitter, the design flaw has already compounded. The work happens months earlier — in the rule set.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="process" class="px-6 md:px-12 py-24 md:py-32 border-t line">
+  <div class="grid grid-cols-12 gap-6 md:gap-10">
+    <div class="col-span-12 md:col-span-4">
+      <span class="text-xs tracking-[0.25em] uppercase mute">§ 04</span>
+      <h2 class="serif text-4xl md:text-6xl mt-4 leading-none">How I work.</h2>
+      <p class="mute text-sm mt-8 max-w-xs">Four steps. No decks, no frameworks borrowed from consulting firms. Just an honest look at what's actually happening in your campaign.</p>
+    </div>
+
+    <div class="col-span-12 md:col-span-8">
+      <ol class="space-y-0">
+
+        <li class="grid grid-cols-12 gap-6 py-8 border-t line items-baseline">
+          <span class="col-span-2 md:col-span-1 num text-2xl" style="color: var(--accent);">01</span>
+          <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Review</h3>
+          <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">I study the campaign from a farmer's perspective — every rule, incentive, and touchpoint. The goal is to see what they see.</p>
+        </li>
+
+        <li class="grid grid-cols-12 gap-6 py-8 border-t line items-baseline">
+          <span class="col-span-2 md:col-span-1 num text-2xl" style="color: var(--accent);">02</span>
+          <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Identify weaknesses</h3>
+          <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">Where the incentive design breaks. Where the detection is naive. Where real users will leave and farmers will stay.</p>
+        </li>
+
+        <li class="grid grid-cols-12 gap-6 py-8 border-t line items-baseline">
+          <span class="col-span-2 md:col-span-1 num text-2xl" style="color: var(--accent);">03</span>
+          <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Redesign</h3>
+          <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">Specific changes — to rules, weights, detection logic, and user funnels — that shift the cost-benefit against farms.</p>
+        </li>
+
+        <li class="grid grid-cols-12 gap-6 py-8 border-t border-b line items-baseline">
+          <span class="col-span-2 md:col-span-1 num text-2xl" style="color: var(--accent);">04</span>
+          <h3 class="col-span-10 md:col-span-4 serif text-2xl md:text-3xl">Launch</h3>
+          <p class="col-span-12 md:col-span-7 mute text-sm leading-relaxed">Deploy, monitor, and adjust as behavior evolves. Anti-Sybil isn't a setting — it's an ongoing posture.</p>
+        </li>
+
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="contact" class="px-6 md:px-12 py-24 md:py-40 border-t line relative">
+  <div class="grid grid-cols-12 gap-6 md:gap-10">
+    <div class="col-span-12 md:col-span-10">
+      <span class="text-xs tracking-[0.25em] uppercase mute">§ 05 — End</span>
+      <h2 class="serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl mt-8 leading-[0.9] tracking-tight">
+        If your next<br/>
+        campaign matters,<br/>
+        <em class="italic" style="color: var(--accent);">let's talk</em> before<br/>
+        the snapshot.
+      </h2>
+    </div>
+
+    <div class="col-span-12 md:col-span-8 md:col-start-3 lg:col-span-6 lg:col-start-4 mt-16">
+      <div class="flex flex-wrap gap-3">
+        <a href="mailto:hello@example.com" class="btn btn-primary">
+          hello@example.com <span class="arrow">↗</span>
+        </a>
+        <a href="https://t.me/" target="_blank" class="btn text-white">
+          Telegram <span class="arrow mute">↗</span>
+        </a>
+        <a href="https://twitter.com/" target="_blank" class="btn text-white">
+          Twitter <span class="arrow mute">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-6 md:px-12 py-10 border-t line">
+  <div class="grid grid-cols-12 gap-6 text-xs tracking-[0.15em] uppercase mute">
+    <div class="col-span-6 md:col-span-4">© 2025 — Md Fahad Bin Firdous</div>
+    <div class="hidden md:block md:col-span-4 text-center">Web3 · Anti-Sybil · Strategy</div>
+    <div class="col-span-6 md:col-span-4 text-right">
+      <a href="#" class="hover:text-white transition">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+```      <h3 class="accent text-xl">100+</h3>
       <p class="text-gray-400 text-sm">Campaigns explored & analyzed</p>
     </div>
 
