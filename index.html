@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Md Fahad Bin Firdous — Web3 Growth Strategist</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -13,18 +14,19 @@
 body {
   background:#0a0a0a;
   color:#e7e5e4;
-  font-family: 'Inter', sans-serif;
+  font-family:'Inter',sans-serif;
 }
 h1,h2 {
-  font-family: 'DM Serif Display', serif;
+  font-family:'DM Serif Display',serif;
 }
 .container {
-  max-width: 1200px;
+  max-width:1200px;
   margin:auto;
-  padding: 80px 24px;
+  padding:80px 24px;
 }
 .muted { color:#9ca3af; }
 .border-soft { border-color:#1f2937; }
+
 .btn {
   border:1px solid #e7e5e4;
   padding:10px 20px;
@@ -43,44 +45,54 @@ h1,h2 {
 <body>
 
 <!-- HERO -->
-<section class="container flex flex-col md:flex-row items-center gap-16">
+<section class="container">
 
-  <!-- IMAGE (DOMINANT) -->
-  <div class="w-full md:w-1/2">
+  <!-- IMAGE (DOMINANT MOBILE FIRST) -->
+  <div class="mb-10">
     <img src="profile.png" alt="Fahad"
-      class="w-full h-auto object-cover border border-soft">
+      class="w-full max-w-[520px] mx-auto md:mx-0 md:max-w-none object-cover shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
   </div>
 
-  <!-- TEXT -->
-  <div class="w-full md:w-1/2">
+  <!-- CONTENT -->
+  <div class="md:grid md:grid-cols-2 md:gap-16 items-start">
 
-    <p class="text-xs uppercase tracking-widest muted mb-4">
-      Web3 Growth · Anti-Sybil Strategy
-    </p>
+    <!-- LEFT TEXT -->
+    <div>
 
-    <h1 class="text-4xl md:text-6xl leading-tight mb-6">
-      I design growth systems<br>
-      that attract <em class="not-italic text-white">real users</em><br>
-      instead of farmers
-    </h1>
+      <p class="text-xs uppercase tracking-widest muted mb-4">
+        Web3 Growth · Anti-Sybil Strategy
+      </p>
 
-    <p class="muted mb-8 max-w-md leading-relaxed">
-      Six years inside airdrops, testnets, and campaign ecosystems taught me how users actually behave — and how most projects unintentionally reward the wrong ones.
-    </p>
+      <h1 class="text-4xl md:text-6xl leading-tight mb-6">
+        I design growth systems<br>
+        that attract real users<br>
+        instead of farmers
+      </h1>
 
-    <div class="flex gap-4 flex-wrap">
+    </div>
 
-      <a href="https://t.me/Fahadazad62" target="_blank" class="btn">
-        Telegram
-      </a>
+    <!-- RIGHT TEXT -->
+    <div class="mt-6 md:mt-0">
 
-      <a href="https://twitter.com/fahadhasan62" target="_blank" class="btn">
-        Twitter
-      </a>
+      <p class="muted mb-8 leading-relaxed max-w-md">
+        Six years inside airdrops, testnets, and campaign ecosystems taught me how users actually behave — and how most projects unintentionally reward the wrong ones.
+      </p>
 
-      <a href="mailto:fahad.web3growth@gmail.com" class="btn">
-        Email
-      </a>
+      <div class="flex gap-4 flex-wrap">
+
+        <a href="https://t.me/Fahadazad62" target="_blank" class="btn">
+          Telegram
+        </a>
+
+        <a href="https://twitter.com/fahadhasan62" target="_blank" class="btn">
+          Twitter
+        </a>
+
+        <a href="mailto:fahad.web3growth@gmail.com" class="btn">
+          Email
+        </a>
+
+      </div>
 
     </div>
 
