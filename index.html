@@ -13,8 +13,6 @@
                         base: '#0a0a0a',
                         surface: '#171717',
                         surfaceHover: '#262626',
-                        accent: '#e5e5e5',
-                        muted: '#a3a3a3'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -33,14 +31,11 @@
                 @apply hover:bg-surfaceHover/80 hover:border-white/10 transition-all duration-300;
             }
         }
-        body {
-            background-color: #0a0a0a;
-            color: #e5e5e5;
-        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body class="antialiased selection:bg-white/20 font-sans min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Added bg-[#0a0a0a] and text-white to enforce dark mode colors regardless of system theme -->
+<body class="bg-[#0a0a0a] text-white antialiased selection:bg-emerald-500/30 font-sans min-h-screen flex flex-col relative overflow-x-hidden">
     
     <!-- Ambient Background -->
     <div class="fixed inset-0 z-[-1] pointer-events-none">
@@ -56,14 +51,14 @@
             <!-- HERO (Spans 2 columns) -->
             <div class="md:col-span-2 glass rounded-[2rem] p-8 md:p-12 flex flex-col justify-center animate-item opacity-0 transform translate-y-8">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 w-fit mb-8">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <span class="text-xs font-mono text-muted uppercase tracking-wider">Available for protocol deployment</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Available for protocol deployment</span>
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white mb-6 leading-[1.1]">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-slate-50 mb-6 leading-[1.1]">
                     Md Fahad Bin Firdous:<br/>
-                    <span class="text-muted">Web3 Growth & Community Strategy.</span>
+                    <span class="text-slate-400">Web3 Growth & Community Strategy.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-muted max-w-xl font-light leading-relaxed">
+                <p class="text-lg md:text-xl text-slate-300 max-w-xl font-light leading-relaxed">
                     6+ years of on-chain survival. I build growth systems that resist bots and reward humans.
                 </p>
             </div>
@@ -72,50 +67,50 @@
             <div class="glass rounded-[2rem] p-8 flex flex-col justify-between animate-item opacity-0 transform translate-y-8 relative overflow-hidden group">
                 <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div>
-                    <h3 class="font-mono text-xs text-muted uppercase tracking-wider mb-3">Current Status</h3>
-                    <p class="text-xl font-medium text-white">Navigating the trenches.</p>
+                    <h3 class="font-mono text-xs text-slate-400 uppercase tracking-wider mb-3">Current Status</h3>
+                    <p class="text-xl font-medium text-slate-50">Navigating the trenches.</p>
                 </div>
                 <div class="mt-12 space-y-5">
                     <div class="flex justify-between items-end border-b border-white/10 pb-3">
-                        <span class="text-muted text-sm font-light">TGEs Handled</span>
-                        <span class="font-mono text-white">100+</span>
+                        <span class="text-slate-300 text-sm font-light">TGEs Handled</span>
+                        <span class="font-mono text-emerald-400">100+</span>
                     </div>
                     <div class="flex justify-between items-end border-b border-white/10 pb-3">
-                        <span class="text-muted text-sm font-light">Years On-Chain</span>
-                        <span class="font-mono text-white">6</span>
+                        <span class="text-slate-300 text-sm font-light">Years On-Chain</span>
+                        <span class="font-mono text-emerald-400">6</span>
                     </div>
                 </div>
             </div>
 
             <!-- PILLAR 1: The Defense -->
             <div class="glass rounded-[2rem] p-8 flex flex-col gap-4 animate-item opacity-0 transform translate-y-8 glass-hover">
-                <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-2 text-white/70">
+                <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-2 text-emerald-400">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                 </div>
-                <h2 class="text-xl font-medium text-white tracking-tight">The Defense</h2>
-                <p class="text-muted font-light text-sm md:text-base leading-relaxed">
+                <h2 class="text-xl font-medium text-slate-50 tracking-tight">The Defense</h2>
+                <p class="text-slate-300 font-light text-sm md:text-base leading-relaxed">
                     Anti-Sybil strategies derived from 6 years of airdrop farming. I know the tricks because I've seen them all.
                 </p>
             </div>
 
             <!-- PILLAR 2: The Offense -->
             <div class="glass rounded-[2rem] p-8 flex flex-col gap-4 animate-item opacity-0 transform translate-y-8 glass-hover">
-                <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-2 text-white/70">
+                <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-2 text-emerald-400">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
-                <h2 class="text-xl font-medium text-white tracking-tight">The Offense</h2>
-                <p class="text-muted font-light text-sm md:text-base leading-relaxed">
+                <h2 class="text-xl font-medium text-slate-50 tracking-tight">The Offense</h2>
+                <p class="text-slate-300 font-light text-sm md:text-base leading-relaxed">
                     Quest design (Galxe/Zealy) that prioritizes retention over vanity metrics. Building communities that actually stick around after the snapshot.
                 </p>
             </div>
 
             <!-- PILLAR 3: The Infrastructure -->
             <div class="glass rounded-[2rem] p-8 flex flex-col gap-4 animate-item opacity-0 transform translate-y-8 glass-hover">
-                <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-2 text-white/70">
+                <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-2 text-emerald-400">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 </div>
-                <h2 class="text-xl font-medium text-white tracking-tight">The Infrastructure</h2>
-                <p class="text-muted font-light text-sm md:text-base leading-relaxed">
+                <h2 class="text-xl font-medium text-slate-50 tracking-tight">The Infrastructure</h2>
+                <p class="text-slate-300 font-light text-sm md:text-base leading-relaxed">
                     Discord/Telegram architecture. Setting up the 'digital fortress' for new protocols. I've handled the chaos of 100+ TGEs so the founders didn't have to.
                 </p>
             </div>
@@ -123,13 +118,13 @@
             <!-- ON-CHAIN PROOF (Spans all columns) -->
             <div class="md:col-span-3 glass rounded-[2rem] p-8 md:p-10 animate-item opacity-0 transform translate-y-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 group">
                 <div class="flex-1">
-                    <div class="font-mono text-xs text-muted uppercase tracking-wider mb-4 border border-white/10 w-fit px-3 py-1 rounded-md">Strategic Audits</div>
-                    <h2 class="text-2xl md:text-3xl font-medium text-white mb-3 tracking-tight">Case Study: Reducing Bot Farming by 40%</h2>
-                    <p class="text-muted font-light max-w-3xl text-sm md:text-base leading-relaxed">
+                    <div class="font-mono text-xs text-emerald-400 uppercase tracking-wider mb-4 border border-white/10 w-fit px-3 py-1 rounded-md">Strategic Audits</div>
+                    <h2 class="text-2xl md:text-3xl font-medium text-slate-50 mb-3 tracking-tight">Case Study: Reducing Bot Farming by 40%</h2>
+                    <p class="text-slate-300 font-light max-w-3xl text-sm md:text-base leading-relaxed">
                         A granular look at how we restructured engagement parameters to price out low-effort sybils while rewarding high-conviction users.
                     </p>
                 </div>
-                <button class="shrink-0 px-6 py-3 rounded-full bg-white text-black text-sm font-medium hover:bg-gray-200 transition-colors flex items-center gap-2 group-hover:scale-[1.02] duration-300">
+                <button class="shrink-0 px-6 py-3 rounded-full bg-emerald-500 text-slate-900 text-sm font-medium hover:bg-emerald-400 hover:text-slate-900 transition-colors flex items-center gap-2 group-hover:scale-[1.02] duration-300">
                     Read the breakdown
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </button>
@@ -141,11 +136,11 @@
     <!-- CONTACT FOOTER -->
     <footer class="mt-auto border-t border-white/5 bg-base/80 backdrop-blur-xl">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-muted font-light text-sm">© <script>document.write(new Date().getFullYear())</script> Md Fahad Bin Firdous. All rights reserved.</p>
+            <p class="text-slate-400 font-light text-sm">© <script>document.write(new Date().getFullYear())</script> Md Fahad Bin Firdous. All rights reserved.</p>
             <div class="flex items-center gap-6">
-                <a href="#" class="text-muted hover:text-white transition-colors text-sm font-medium">Upwork</a>
-                <a href="#" class="text-muted hover:text-white transition-colors text-sm font-medium">LinkedIn</a>
-                <a href="#" class="text-muted hover:text-white transition-colors text-sm font-medium">X (Twitter)</a>
+                <a href="#" class="text-slate-400 hover:text-emerald-400 transition-colors text-sm font-medium">Upwork</a>
+                <a href="#" class="text-slate-400 hover:text-emerald-400 transition-colors text-sm font-medium">LinkedIn</a>
+                <a href="#" class="text-slate-400 hover:text-emerald-400 transition-colors text-sm font-medium">X (Twitter)</a>
             </div>
         </div>
     </footer>
