@@ -29,7 +29,7 @@ h1,h2 {
 
 .btn {
   border:1px solid #e7e5e4;
-  padding:10px 20px;
+  padding:10px 18px;
   font-size:12px;
   letter-spacing:0.08em;
   text-transform:uppercase;
@@ -47,16 +47,9 @@ h1,h2 {
 <!-- HERO -->
 <section class="container">
 
-  <!-- IMAGE (DOMINANT MOBILE FIRST) -->
-  <div class="mb-10">
-    <img src="profile.png" alt="Fahad"
-      class="w-full max-w-[520px] mx-auto md:mx-0 md:max-w-none object-cover shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
-  </div>
+  <div class="md:grid md:grid-cols-2 md:gap-20 items-center">
 
-  <!-- CONTENT -->
-  <div class="md:grid md:grid-cols-2 md:gap-16 items-start">
-
-    <!-- LEFT TEXT -->
+    <!-- TEXT -->
     <div>
 
       <p class="text-xs uppercase tracking-widest muted mb-4">
@@ -69,31 +62,25 @@ h1,h2 {
         instead of farmers
       </h1>
 
-    </div>
-
-    <!-- RIGHT TEXT -->
-    <div class="mt-6 md:mt-0">
-
-      <p class="muted mb-8 leading-relaxed max-w-md">
-        Six years inside airdrops, testnets, and campaign ecosystems taught me how users actually behave — and how most projects unintentionally reward the wrong ones.
+      <p class="muted mb-8 max-w-md leading-relaxed">
+        Six years inside airdrops, testnets, and campaign ecosystems taught me how users behave — and how most projects reward the wrong ones.
       </p>
 
       <div class="flex gap-4 flex-wrap">
-
-        <a href="https://t.me/Fahadazad62" target="_blank" class="btn">
-          Telegram
-        </a>
-
-        <a href="https://twitter.com/fahadhasan62" target="_blank" class="btn">
-          Twitter
-        </a>
-
-        <a href="mailto:fahad.web3growth@gmail.com" class="btn">
-          Email
-        </a>
-
+        <a href="https://t.me/Fahadazad62" target="_blank" class="btn">Telegram</a>
+        <a href="https://twitter.com/fahadhasan62" target="_blank" class="btn">Twitter</a>
+        <a href="mailto:fahad.web3growth@gmail.com" class="btn">Email</a>
       </div>
 
+    </div>
+
+    <!-- IMAGE -->
+    <div class="mt-12 md:mt-0 flex justify-center md:justify-end">
+      <div class="relative">
+        <img src="profile.png" alt="Fahad"
+          class="w-[260px] md:w-[320px] object-cover">
+        <div class="absolute -inset-4 border border-soft"></div>
+      </div>
     </div>
 
   </div>
@@ -189,6 +176,204 @@ h1,h2 {
   </div>
 
 </section>
+
+<!-- CASE STUDY -->
+<section class="container border-t border-soft">
+
+  <h2 class="text-3xl mb-10">Case Study 01</h2>
+
+  <div class="max-w-3xl space-y-6">
+
+    <h3 class="text-xl">
+      Why Most Airdrop Campaigns Fail to Retain Users
+    </h3>
+
+    <p class="muted text-sm leading-relaxed">
+      Over multiple years participating in airdrops and testnet campaigns, I observed a consistent pattern: most projects successfully attract attention, but fail to retain users after rewards are distributed.
+    </p>
+
+    <div class="space-y-4">
+
+      <div>
+        <p class="text-white text-sm mb-1">Problem</p>
+        <p class="muted text-sm">
+          Campaigns are designed to maximize participation volume, not user quality. Low-effort tasks attract multi-wallet farmers who exit immediately after rewards.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Observation</p>
+        <p class="muted text-sm">
+          Users behave rationally. If rewards can be extracted without long-term engagement, most participants will choose that path.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Insight</p>
+        <p class="muted text-sm">
+          The issue is not user behavior — it is incentive design.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Strategic Fix</p>
+        <p class="muted text-sm">
+          Introduce layered participation, combine behavioral signals, delay rewards, and build identity before distribution.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Outcome</p>
+        <p class="muted text-sm">
+          Better user quality and higher retention probability.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- CASE STUDY 02 -->
+<section class="container border-t border-soft">
+
+  <h2 class="text-3xl mb-10">Case Study 02</h2>
+
+  <div class="max-w-3xl space-y-6">
+
+    <h3 class="text-xl">
+      How Airdrop Farmers Exploit Campaign Systems
+    </h3>
+
+    <p class="muted text-sm leading-relaxed">
+      Across multiple campaigns, a consistent pattern emerges: once a campaign structure is predictable, it becomes easy to scale exploitation using multiple wallets and automated workflows.
+    </p>
+
+    <div class="space-y-4">
+
+      <div>
+        <p class="text-white text-sm mb-1">Problem</p>
+        <p class="muted text-sm">
+          Many campaigns rely on simple, repeatable tasks such as social follows, basic transactions, or form submissions. These tasks are easy to replicate across dozens or hundreds of wallets.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Exploit Pattern</p>
+        <p class="muted text-sm">
+          Farmers typically combine multiple wallets, VPN rotation, and scripted actions. Once a workflow is defined, it can be repeated at scale with minimal additional effort.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Weak Points</p>
+        <p class="muted text-sm">
+          Campaigns become vulnerable when:
+          <br>• Tasks require low effort and no sequencing
+          <br>• There is no cross-verification between actions
+          <br>• Rewards are distributed instantly without filtering
+          <br>• Wallet history is not considered
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Insight</p>
+        <p class="muted text-sm">
+          Exploitation is not random — it follows structure. Once a system can be repeated, it will be scaled. The simpler the system, the easier it is to farm.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Strategic Fix</p>
+        <p class="muted text-sm">
+          Reduce repeatability:
+          <br>• Introduce task dependency and sequencing
+          <br>• Mix on-chain and off-chain actions
+          <br>• Require time-based participation
+          <br>• Analyze wallet behavior instead of single actions
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Outcome</p>
+        <p class="muted text-sm">
+          Systems designed this way increase friction for farmers while remaining manageable for real users, improving overall campaign quality.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- CASE STUDY 03 -->
+<section class="container border-t border-soft">
+
+  <h2 class="text-3xl mb-10">Case Study 03</h2>
+
+  <div class="max-w-3xl space-y-6">
+
+    <h3 class="text-xl">
+      Why Users Disappear After TGE
+    </h3>
+
+    <p class="muted text-sm leading-relaxed">
+      Many projects experience strong growth before token distribution, followed by a sharp drop in activity. This pattern is not random — it is a direct result of how incentives are structured.
+    </p>
+
+    <div class="space-y-4">
+
+      <div>
+        <p class="text-white text-sm mb-1">Problem</p>
+        <p class="muted text-sm">
+          Users join primarily for rewards, not for the product. When the reward event ends, there is no remaining reason to stay.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Observed Behavior</p>
+        <p class="muted text-sm">
+          Activity peaks before snapshot or TGE, then declines rapidly. Communities lose engagement, Discord becomes inactive, and token holders disengage unless price speculation takes over.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Root Cause</p>
+        <p class="muted text-sm">
+          Campaigns are designed as short-term extraction events. Users complete tasks, claim rewards, and exit because no long-term participation loop was created.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Insight</p>
+        <p class="muted text-sm">
+          Retention cannot be added after TGE. If users are not connected to the product before rewards, they will not stay after.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Strategic Fix</p>
+        <p class="muted text-sm">
+          Build pre-TGE retention loops:
+          <br>• Introduce roles, identity, and progression systems
+          <br>• Reward ongoing participation, not one-time actions
+          <br>• Align incentives with product usage, not task completion
+          <br>• Gradually distribute rewards instead of one-time drops
+        </p>
+      </div>
+
+      <div>
+        <p class="text-white text-sm mb-1">Outcome</p>
+        <p class="muted text-sm">
+          Projects that design for retention early maintain stronger communities, more active users, and better long-term ecosystem health.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>  
 
 <!-- PROCESS -->
 <section class="container border-t border-soft">
