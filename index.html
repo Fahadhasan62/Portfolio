@@ -1,257 +1,605 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Md Fahad Bin Firdous — Web3 Growth Strategist</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<style>
-body {
-  background:#0a0a0a;
-  color:#e7e5e4;
-  font-family:'Inter',sans-serif;
-}
-h1,h2 {
-  font-family:'DM Serif Display',serif;
-}
-.container {
-  max-width:1200px;
-  margin:auto;
-  padding:90px 24px;
-}
-.muted { color:#9ca3af; }
-.border-soft { border-color:#1f2937; }
-
-.btn {
-  border:1px solid #e7e5e4;
-  padding:10px 18px;
-  font-size:12px;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  transition:0.25s;
-}
-.btn:hover {
-  background:#e7e5e4;
-  color:#0a0a0a;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Fahad Bin Firdous — Crypto Community Manager</title>
+  <meta name="description" content="I help crypto projects build and manage active, structured, and supportive communities that keep users engaged." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+ 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0a0a',
+            surface: '#111111',
+            border: '#1e1e1e',
+            accent: '#39ff6a',
+            'accent-dim': '#1a7a36',
+            muted: '#444444',
+            subtle: '#2a2a2a',
+            text: '#e8e8e8',
+            'text-dim': '#888888',
+          },
+          fontFamily: {
+            sans: ['Sora', 'sans-serif'],
+            mono: ['DM Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+ 
+  <style>
+    * { box-sizing: border-box; }
+ 
+    body {
+      background-color: #0a0a0a;
+      color: #e8e8e8;
+      font-family: 'Sora', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+ 
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+ 
+    /* Subtle grid lines */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(57,255,106,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,106,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+ 
+    /* Profile glow */
+    .profile-glow {
+      filter: drop-shadow(0 0 40px rgba(57,255,106,0.18)) drop-shadow(0 0 80px rgba(57,255,106,0.08));
+    }
+ 
+    /* Outlined buttons */
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #888888;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: #39ff6a;
+      color: #39ff6a;
+      background: rgba(57,255,106,0.05);
+    }
+ 
+    /* Section divider */
+    .section-line {
+      width: 32px;
+      height: 1px;
+      background: #39ff6a;
+      margin-bottom: 2rem;
+    }
+ 
+    /* Work card */
+    .work-card {
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 2rem;
+      background: #111111;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(57,255,106,0), transparent);
+      transition: background 0.3s ease;
+    }
+    .work-card:hover {
+      border-color: rgba(57,255,106,0.3);
+      transform: translateY(-2px);
+    }
+    .work-card:hover::before {
+      background: linear-gradient(90deg, transparent, rgba(57,255,106,0.4), transparent);
+    }
+ 
+    /* Step number */
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: #39ff6a;
+      letter-spacing: 0.1em;
+    }
+ 
+    /* Stat block */
+    .stat-block {
+      border-left: 1px solid #1e1e1e;
+      padding-left: 1.5rem;
+    }
+ 
+    /* CTA section */
+    .cta-section {
+      background: #111111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(57,255,106,0.5), transparent);
+    }
+ 
+    /* CTA button */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border: 1px solid rgba(57,255,106,0.5);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #39ff6a;
+      text-decoration: none;
+      background: rgba(57,255,106,0.06);
+      transition: all 0.25s ease;
+    }
+    .btn-primary:hover {
+      background: rgba(57,255,106,0.12);
+      border-color: #39ff6a;
+      box-shadow: 0 0 24px rgba(57,255,106,0.15);
+    }
+ 
+    /* Nav link */
+    .nav-link {
+      font-size: 0.8rem;
+      color: #555;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #e8e8e8; }
+ 
+    /* Icon circle */
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      flex-shrink: 0;
+    }
+ 
+    /* Fade-in on load */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+    .delay-5 { animation-delay: 0.65s; }
+ 
+    /* Step connector line */
+    .step-connector {
+      width: 1px;
+      background: linear-gradient(to bottom, #1e1e1e, transparent);
+      height: 32px;
+      margin: 0 auto;
+    }
+ 
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 2px; }
+  </style>
 </head>
-
-<body>
-
-<!-- HERO -->
-<section class="container">
-
-  <div class="grid md:grid-cols-2 gap-20 items-center">
-
-    <!-- LEFT: TEXT -->
-    <div>
-
-      <p class="text-xs uppercase tracking-widest muted mb-4">
-        Web3 Growth · Anti-Sybil Strategy
-      </p>
-
-      <h1 class="text-5xl md:text-7xl leading-tight mb-6">
-        Real users<br>
-        not inflated metrics
-      </h1>
-
-      <p class="muted mb-8 max-w-md leading-relaxed">
-        Six years inside airdrops and testnets gave me a clear view of how campaigns get farmed, exploited, and abandoned. I design systems that change that outcome.
-      </p>
-
-      <div class="flex gap-4 flex-wrap">
-
-        <a href="https://t.me/Fahadazad62" target="_blank" class="btn">Telegram</a>
-
-        <a href="https://twitter.com/fahadhasan62" target="_blank" class="btn">Twitter</a>
-
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fahad.web3growth@gmail.com" target="_blank" class="btn">
-          Email
-        </a>
-
+ 
+<body class="grid-bg">
+ 
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <span class="font-mono text-xs text-text-dim tracking-widest">FAHAD.WEB3</span>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#what-i-do" class="nav-link">Services</a>
+        <a href="#how-i-work" class="nav-link">Process</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="mailto:fahad.web3growth@gmail.com" class="btn-outline text-xs py-2 px-4">Hire Me</a>
       </div>
-
+      <!-- Mobile menu icon -->
+      <a href="mailto:fahad.web3growth@gmail.com" class="md:hidden btn-outline text-xs py-2 px-4">Hire Me</a>
     </div>
-
-    <div class="flex justify-center md:justify-end">
-
-  <div class="relative">
-
-    <!-- IMAGE -->
-    <img src="profile.png" alt="Fahad"
-      class="w-[260px] md:w-[340px] object-cover relative z-10">
-
-    <!-- PERFECT FRAME -->
-    <div class="absolute inset-0 translate-x-4 translate-y-4 border border-soft opacity-60"></div>
-
-  </div>
-
-</div>
-
-</section>
-
-<!-- WHAT I DO -->
-<section class="container border-t border-soft">
-
-  <h2 class="text-3xl mb-10">What I Do</h2>
-
-  <div class="grid md:grid-cols-3 gap-12">
-
-    <div>
-      <h3 class="mb-2">Anti-Sybil Strategy</h3>
-      <p class="muted text-sm">
-        Designing campaign structures that reduce bot participation without damaging real user flow.
-      </p>
+  </nav>
+ 
+  <!-- HERO -->
+  <section class="min-h-screen flex items-center pt-14" id="hero">
+    <div class="max-w-6xl mx-auto px-6 w-full py-20 lg:py-0">
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
+ 
+        <!-- Left -->
+        <div class="flex-1 fade-up">
+          <!-- Label -->
+          <div class="inline-flex items-center gap-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-accent inline-block" style="box-shadow:0 0 8px #39ff6a;"></span>
+            <span class="font-mono text-xs text-accent tracking-widest uppercase">Crypto Community Manager</span>
+          </div>
+ 
+          <!-- Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 text-text max-w-xl delay-1 fade-up">
+            I manage communities that keep users
+            <span style="color:#39ff6a;"> active,</span> not confused
+          </h1>
+ 
+          <!-- Subtext -->
+          <p class="text-text-dim text-base sm:text-lg leading-relaxed max-w-md mb-10 delay-2 fade-up">
+            Telegram and Discord setup, daily moderation, and user support to keep your community structured, responsive, and engaged.
+          </p>
+ 
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-3 delay-3 fade-up">
+            <!-- Telegram -->
+            <a href="https://t.me/Fahadazad62" target="_blank" class="btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Telegram
+            </a>
+            <!-- Twitter/X -->
+            <a href="https://x.com/fahadhasan62" target="_blank" class="btn-outline">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 5.892zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/md-fahad-bin-firdous-403098189/" target="_blank" class="btn-outline">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <!-- Email -->
+            <a href="mailto:fahad.web3growth@gmail.com" class="btn-outline">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+ 
+        <!-- Right — Profile Image -->
+        <div class="flex-shrink-0 lg:w-[420px] flex justify-center lg:justify-end delay-4 fade-up">
+          <div class="relative">
+            <!-- Background shape -->
+            <div class="absolute inset-0 rounded-2xl" style="background: radial-gradient(ellipse at center, rgba(57,255,106,0.08) 0%, transparent 70%); transform: scale(1.1);"></div>
+            <img
+              src="./assets/profile.png"
+              alt="Md Fahad Bin Firdous"
+              class="profile-glow relative z-10 w-64 sm:w-80 lg:w-96 object-contain"
+              style="max-height: 480px;"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Fallback placeholder -->
+            <div style="display:none;" class="w-64 sm:w-80 lg:w-72 h-80 rounded-2xl border border-border bg-surface items-center justify-center flex-col gap-3">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span class="text-muted text-xs font-mono">profile.png</span>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
     </div>
-
-    <div>
-      <h3 class="mb-2">Campaign Design</h3>
-      <p class="muted text-sm">
-        Galxe, Zealy, and testnet systems built around effort, sequencing, and real engagement.
-      </p>
+  </section>
+ 
+  <!-- WHAT I DO -->
+  <section id="what-i-do" class="py-24 border-t border-border">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-14">
+        <div class="section-line"></div>
+        <span class="font-mono text-xs text-text-dim tracking-widest uppercase">What I Do</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-text">Three things, done properly.</h2>
+      </div>
+ 
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="work-card">
+          <div class="icon-circle mb-5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-text mb-3">Community Setup</h3>
+          <p class="text-text-dim text-sm leading-relaxed">Building Telegram and Discord servers from scratch — channels, roles, bots, rules, and onboarding flows that make new members feel oriented immediately.</p>
+        </div>
+ 
+        <!-- Card 2 -->
+        <div class="work-card">
+          <div class="icon-circle mb-5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-text mb-3">Community Management</h3>
+          <p class="text-text-dim text-sm leading-relaxed">Daily moderation, answering user questions, handling issues before they escalate, and keeping the atmosphere constructive and on-brand for your project.</p>
+        </div>
+ 
+        <!-- Card 3 -->
+        <div class="work-card">
+          <div class="icon-circle mb-5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><path d="M22 4s-2.5 2.5-5 5l-3-3-7 7"/><path d="M16 4h6v6"/><path d="M3 20h18"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-text mb-3">Social & Campaign Support</h3>
+          <p class="text-text-dim text-sm leading-relaxed">Writing posts, guiding campaign participants, and keeping social channels active during airdrop, testnet, and launch phases so engagement doesn't drop off.</p>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <h3 class="mb-2">User Behavior Analysis</h3>
-      <p class="muted text-sm">
-        Identifying how users exploit systems and where retention breaks across the lifecycle.
-      </p>
+  </section>
+ 
+  <!-- HOW I WORK -->
+  <section id="how-i-work" class="py-24 border-t border-border">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-14">
+        <div class="section-line"></div>
+        <span class="font-mono text-xs text-text-dim tracking-widest uppercase">How I Work</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-text">A simple process, consistently followed.</h2>
+      </div>
+ 
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 relative">
+        <!-- Connecting line (desktop) -->
+        <div class="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-border z-0"></div>
+ 
+        <!-- Step 1 -->
+        <div class="relative z-10 flex flex-col items-start lg:items-center p-6">
+          <div class="flex lg:flex-col items-center gap-4 w-full">
+            <div class="w-16 h-16 rounded-full border border-border bg-surface flex items-center justify-center flex-shrink-0" style="box-shadow: 0 0 0 4px #0a0a0a;">
+              <span class="font-mono text-accent font-bold text-sm">01</span>
+            </div>
+            <div class="lg:mt-5 lg:text-center">
+              <h4 class="text-text font-semibold mb-1">Setup Structure</h4>
+              <p class="text-text-dim text-xs leading-relaxed">Channels, roles, bots, and rules in place before anyone joins.</p>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Step 2 -->
+        <div class="relative z-10 flex flex-col items-start lg:items-center p-6">
+          <div class="flex lg:flex-col items-center gap-4 w-full">
+            <div class="w-16 h-16 rounded-full border border-border bg-surface flex items-center justify-center flex-shrink-0" style="box-shadow: 0 0 0 4px #0a0a0a;">
+              <span class="font-mono text-accent font-bold text-sm">02</span>
+            </div>
+            <div class="lg:mt-5 lg:text-center">
+              <h4 class="text-text font-semibold mb-1">Support Users</h4>
+              <p class="text-text-dim text-xs leading-relaxed">Answer questions, resolve issues, and respond to what users actually need.</p>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Step 3 -->
+        <div class="relative z-10 flex flex-col items-start lg:items-center p-6">
+          <div class="flex lg:flex-col items-center gap-4 w-full">
+            <div class="w-16 h-16 rounded-full border border-border bg-surface flex items-center justify-center flex-shrink-0" style="box-shadow: 0 0 0 4px #0a0a0a;">
+              <span class="font-mono text-accent font-bold text-sm">03</span>
+            </div>
+            <div class="lg:mt-5 lg:text-center">
+              <h4 class="text-text font-semibold mb-1">Keep It Active</h4>
+              <p class="text-text-dim text-xs leading-relaxed">Regular posting, campaign support, and consistent presence to maintain momentum.</p>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Step 4 -->
+        <div class="relative z-10 flex flex-col items-start lg:items-center p-6">
+          <div class="flex lg:flex-col items-center gap-4 w-full">
+            <div class="w-16 h-16 rounded-full border border-border bg-surface flex items-center justify-center flex-shrink-0" style="box-shadow: 0 0 0 4px #0a0a0a;">
+              <span class="font-mono text-accent font-bold text-sm">04</span>
+            </div>
+            <div class="lg:mt-5 lg:text-center">
+              <h4 class="text-text font-semibold mb-1">Report & Improve</h4>
+              <p class="text-text-dim text-xs leading-relaxed">Track what's working, flag what isn't, and adjust based on real community behavior.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </div>
-
-</section>
-
-<!-- THINKING -->
-<section class="container border-t border-soft">
-
-  <h2 class="text-3xl mb-10">How I Think</h2>
-
-  <div class="grid md:grid-cols-3 gap-12">
-
-    <div>
-      <h3 class="mb-2">Incentives Define Outcomes</h3>
-      <p class="muted text-sm">
-        Users follow reward logic. If extraction is easier than participation, systems get farmed.
-      </p>
+  </section>
+ 
+  <!-- EXPERIENCE -->
+  <section id="experience" class="py-24 border-t border-border">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-14">
+        <div class="section-line"></div>
+        <span class="font-mono text-xs text-text-dim tracking-widest uppercase">Experience</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-text">Six years in this space.</h2>
+      </div>
+ 
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Left: Stats -->
+        <div class="flex flex-col gap-8">
+          <div class="stat-block">
+            <div class="text-5xl font-bold text-text mb-1">6<span style="color:#39ff6a;">+</span></div>
+            <div class="text-text-dim text-sm">Years active in the crypto ecosystem</div>
+          </div>
+          <div class="stat-block">
+            <div class="text-5xl font-bold text-text mb-1">3<span style="color:#39ff6a;">+</span></div>
+            <div class="text-text-dim text-sm">Types of campaigns managed — airdrops, testnets, social</div>
+          </div>
+          <div class="stat-block">
+            <div class="text-5xl font-bold text-text mb-1">2<span style="color:#39ff6a;"> platforms</span></div>
+            <div class="text-text-dim text-sm">Telegram and Discord, set up and managed from the ground up</div>
+          </div>
+        </div>
+ 
+        <!-- Right: Text -->
+        <div class="space-y-6">
+          <div class="work-card">
+            <div class="flex items-start gap-4">
+              <div class="icon-circle mt-1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div>
+                <h4 class="text-text font-semibold mb-2">Crypto Ecosystem Since 2018</h4>
+                <p class="text-text-dim text-sm leading-relaxed">Been following and participating in crypto long enough to understand how projects grow, how communities shift, and what users actually expect.</p>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="work-card">
+            <div class="flex items-start gap-4">
+              <div class="icon-circle mt-1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-text font-semibold mb-2">Airdrops, Testnets & Campaign Platforms</h4>
+                <p class="text-text-dim text-sm leading-relaxed">Worked across multiple campaign types — where communities spike fast and need someone who can handle volume, confusion, and keep things calm.</p>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="work-card">
+            <div class="flex items-start gap-4">
+              <div class="icon-circle mt-1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div>
+                <h4 class="text-text font-semibold mb-2">Understanding of User Behavior</h4>
+                <p class="text-text-dim text-sm leading-relaxed">I've seen what makes communities fall apart and what keeps them together — and I apply that practically, not theoretically.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <h3 class="mb-2">Retention Is Designed Early</h3>
-      <p class="muted text-sm">
-        If users are not connected before rewards, they will not stay after distribution.
-      </p>
+  </section>
+ 
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="py-24 border-t border-border">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-14">
+        <div class="section-line"></div>
+        <span class="font-mono text-xs text-text-dim tracking-widest uppercase">Portfolio</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-text">Work areas, in detail.</h2>
+      </div>
+ 
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Portfolio 1 -->
+        <div class="work-card group cursor-default">
+          <div class="mb-4">
+            <span class="font-mono text-xs text-accent">01 /</span>
+          </div>
+          <h3 class="text-xl font-bold text-text mb-3 group-hover:text-accent transition-colors duration-200">Telegram & Discord Setup</h3>
+          <p class="text-text-dim text-sm leading-relaxed mb-5">Structured server builds with proper channel hierarchy, bot configuration, role systems, and onboarding sequences that guide new members without confusion.</p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Bots</span>
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Roles</span>
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Onboarding</span>
+          </div>
+        </div>
+ 
+        <!-- Portfolio 2 -->
+        <div class="work-card group cursor-default">
+          <div class="mb-4">
+            <span class="font-mono text-xs text-accent">02 /</span>
+          </div>
+          <h3 class="text-xl font-bold text-text mb-3 group-hover:text-accent transition-colors duration-200">Community Management</h3>
+          <p class="text-text-dim text-sm leading-relaxed mb-5">Day-to-day moderation, user support, conflict handling, and maintaining a tone that reflects your project's values — consistently, not just during launches.</p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Moderation</span>
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Support</span>
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Daily Active</span>
+          </div>
+        </div>
+ 
+        <!-- Portfolio 3 -->
+        <div class="work-card group cursor-default">
+          <div class="mb-4">
+            <span class="font-mono text-xs text-accent">03 /</span>
+          </div>
+          <h3 class="text-xl font-bold text-text mb-3 group-hover:text-accent transition-colors duration-200">Social Campaign Support</h3>
+          <p class="text-text-dim text-sm leading-relaxed mb-5">Running the community side of airdrop and testnet campaigns — posting updates, answering campaign questions, guiding participants, and keeping energy up throughout.</p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Airdrops</span>
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Testnets</span>
+            <span class="text-xs font-mono text-text-dim border border-border rounded px-2 py-1">Engagement</span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <h3 class="mb-2">Behavior Beats Metrics</h3>
-      <p class="muted text-sm">
-        Activity numbers can be inflated. Behavior reveals real intent.
-      </p>
+  </section>
+ 
+  <!-- CTA -->
+  <section id="contact" class="py-24 border-t border-border">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="cta-section p-12 sm:p-16 text-center">
+        <!-- Decorative element -->
+        <div class="flex justify-center mb-6">
+          <div class="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center" style="box-shadow: 0 0 20px rgba(57,255,106,0.1);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+ 
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text mb-4 leading-tight">
+          Let's build a community that<br class="hidden sm:block" />
+          users actually <span style="color:#39ff6a;">stay in</span>
+        </h2>
+        <p class="text-text-dim text-base sm:text-lg mb-10 max-w-md mx-auto">
+          If your community feels unstructured or inactive, I can help fix it.
+        </p>
+        <a href="mailto:fahad.web3growth@gmail.com" class="btn-primary">
+          Contact Me
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
-
-  </div>
-
-</section>
-
-<!-- EXPERIENCE -->
-<section class="container border-t border-soft">
-
-  <h2 class="text-3xl mb-10">Experience</h2>
-
-  <div class="grid md:grid-cols-3 gap-12">
-
-    <div>
-      <h3 class="text-2xl mb-2">6+</h3>
-      <p class="muted text-sm">Years inside crypto ecosystems</p>
+  </section>
+ 
+  <!-- FOOTER -->
+  <footer class="border-t border-border py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-text-dim text-sm">© Md Fahad Bin Firdous</span>
+      <div class="flex items-center gap-6">
+        <a href="https://t.me/Fahadazad62" target="_blank" class="text-muted hover:text-text-dim transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="https://x.com/fahadhasan62" target="_blank" class="text-muted hover:text-text-dim transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 5.892zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/md-fahad-bin-firdous-403098189/" target="_blank" class="text-muted hover:text-text-dim transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:fahad.web3growth@gmail.com" class="text-muted hover:text-text-dim transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+      </div>
     </div>
-
-    <div>
-      <h3 class="text-2xl mb-2">100+</h3>
-      <p class="muted text-sm">Campaigns explored and analyzed</p>
-    </div>
-
-    <div>
-      <h3 class="text-2xl mb-2">Multi-chain</h3>
-      <p class="muted text-sm">EVM, L2, Cosmos environments</p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- CASE STUDIES -->
-<section class="container border-t border-soft">
-
-  <h2 class="text-3xl mb-10">Case Studies</h2>
-
-  <div class="space-y-16 max-w-3xl">
-
-    <div>
-      <h3 class="text-xl mb-2">01 — Why Airdrop Campaigns Fail to Retain Users</h3>
-      <p class="muted text-sm">
-        Campaigns prioritize volume over quality. Low-effort tasks attract multi-wallet users who exit immediately after rewards.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="text-xl mb-2">02 — How Campaign Systems Get Exploited</h3>
-      <p class="muted text-sm">
-        Predictable task flows allow scaling through multiple wallets, VPN rotation, and repeatable actions.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="text-xl mb-2">03 — Why Users Disappear After TGE</h3>
-      <p class="muted text-sm">
-        Without pre-TGE retention loops, users extract value and leave. Incentives are not aligned with long-term participation.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- PROCESS -->
-<section class="container border-t border-soft">
-
-  <h2 class="text-3xl mb-10">How I Work</h2>
-
-  <div class="space-y-4 muted">
-
-    <p>1. Analyze user behavior and campaign structure</p>
-    <p>2. Identify farming vectors and weak incentives</p>
-    <p>3. Redesign participation flow</p>
-    <p>4. Improve user quality and retention</p>
-
-  </div>
-
-</section>
-
-<!-- CTA -->
-<section class="container border-t border-soft text-center">
-
-  <h2 class="text-3xl mb-4">Let’s Fix Your Growth</h2>
-
-  <p class="muted mb-6">
-    If your campaign is attracting the wrong users, we should talk.
-  </p>
-
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fahad.web3growth@gmail.com" target="_blank" class="btn">
-    Contact Me
-  </a>
-
-</section>
-
-<footer class="container text-center text-gray-500 text-sm">
-  © 2026 Md Fahad Bin Firdous
-</footer>
-
+  </footer>
+ 
 </body>
 </html>
+ 
